@@ -1,0 +1,33 @@
+{
+  "name": "atk-gifting-admin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --webpack --port 3011",
+    "build": "next build",
+    "start": "next start --port 3011",
+    "lint": "eslint",
+    "seed:catalog": "node scripts/seed-catalog.js",
+    "seed:admin": "node --env-file=.env.local scripts/seed-super-admin.js",
+    "print:vocabulary": "node --env-file=.env.local scripts/print-product-vocabulary.js",
+    "migrate:descriptions": "node --env-file=.env.local scripts/migrate/plain-text-descriptions.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1124.0",
+    "@aws-sdk/s3-request-presigner": "^3.1124.0",
+    "chart.js": "^4.5.1",
+    "jose": "^6.2.10",
+    "lucide-react": "^1.38.0",
+    "mongoose": "^9.9.3",
+    "next": "16.3.0",
+    "react": "19.2.8",
+    "react-chartjs-2": "^5.3.1",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.0",
+    "tailwindcss": "^4"
+  }
+}

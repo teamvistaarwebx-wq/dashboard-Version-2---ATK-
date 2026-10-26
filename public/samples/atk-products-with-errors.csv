@@ -1,0 +1,13 @@
+title,sku,category,subcategory,price,compare_at_price,quantity,warehouse,image_files,seo_title,seo_description,tags,status,fulfillment,description
+"Tussar Silk Saree, Kantha Peacock",ATK-SAR-0201,Women,Saree,9800,,10,Main Warehouse,tussar-kantha-1.jpg,,"Tussar silk saree with hand Kantha peacock work from Bengal.",Tussar Silk,active,in_stock,"Kantha stitched by hand in Bolpur."
+"Maheshwari Silk Saree, Mint and Silver",ATK-SAR-0202,Women,Saree,5900,,8,Main Warehouse,,,,Maheshwari Silk,active,in_stock,"Light Maheshwari silk with a silver zari border."
+,ATK-SAR-0203,Women,Saree,7400,,6,Main Warehouse,,,,,active,in_stock,"Row with no title."
+"Bandhani Dupatta, Indigo",ATK-DUP-0204,Women,Dupatta,abc,,15,Main Warehouse,,,,,active,in_stock,"Price is not a number."
+"Meenakari Bangles, Set of 2",ATK-JWL-0205,Women,Bangles,2800,,12,Main Warehouse,,,,,active,in_stock,"Bangles is not a category."
+"Kanjivaram Silk Tie, Royal Purple",ATK-TIE-0206,Men,Tie,2400,,20,Main Warehouse,,,,,active,in_stock,"Tie in Kanjivaram silk."
+"Kanjivaram Silk Tie, Royal Purple (copy)",ATK-TIE-0206,Men,Tie,2400,,20,Main Warehouse,,,,,active,in_stock,"Duplicate SKU in this file."
+"Ikat Silk Tie, Indigo",ATK-TIE-0012,Men,Tie,1800,,10,Main Warehouse,,,,,active,in_stock,"SKU already in the catalogue."
+"Khadi Cotton Stole, Undyed Natural Handspun from Ponduru Andhra Pradesh",ATK-OTW-0209,Women,Other Collection,1700,,,Main Warehouse,,"Khadi Cotton Stole, Undyed Natural Handspun from Ponduru, Andhra Pradesh | Atulya Karigari",,Khadi Cotton,active,in_stock,"No quantity and an SEO title over 70 characters."
+"Oxidised Silver Choker",,Women,Jewellery,1600,,9,Main Warehouse,,,,,active,in_stock,"Missing SKU."
+"Mojari Juttis, Mustard Zari",ATK-FTW-0211,Women,Footwear,2300,,14,Main Warehouse,mojari-mustard-1.jpg,,"Hand-embroidered mojari juttis in mustard with zari.",Leather,active,in_stock,"Made in Jaipur."
+"Silk Pocket Squares, Bagru Print",ATK-OTM-0212,Men,Other Collection,1500,,30,Main Warehouse,,,,Corporate,active,in_stock,"Bagru hand-block printed silk squares."

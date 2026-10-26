@@ -1,0 +1,386 @@
+@import "tailwindcss";
+
+/**
+ * Design tokens.
+ *
+ * Every colour the admin paints with is named here, once for light and once
+ * for dark. Components never reach for a raw hex or a Tailwind palette colour:
+ * if a shade is missing, it is added here so dark mode gets it too.
+ *
+ * The brand colours (maroon, tint, gold) come from the storefront. Everything
+ * else is a warm neutral ramp chosen to sit quietly around them.
+ */
+:root {
+  color-scheme: light;
+
+  /* Surfaces and text */
+  --background: #f3f2f1;
+  --surface: #ffffff;
+  /* Table headers, row hover, inset wells. */
+  --surface-muted: #f9f8f7;
+  --foreground: #1c1a19;
+  --muted: #6b6461;
+  /* Placeholders and disabled text — quieter than muted. */
+  --subtle: #9a928f;
+  --border: #e3e1df;
+  --border-strong: #cfcbc8;
+
+  /* Brand */
+  --brand: #7e0917;
+  --brand-hover: #650712;
+  --brand-tint: #f9ebec;
+  /* Maroon used as text (active nav, links). On dark it lightens. */
+  --brand-text: #7e0917;
+  --gold: #fce9a0;
+  --gold-foreground: #5c4600;
+
+  /* Charts */
+  --chart-line: #7e0917;
+  --chart-compare: #b8aeac;
+  --chart-grid: #eeecea;
+
+  /* Search-result preview on the product page. */
+  --serp-link: #1a0dab;
+  --serp-url: #006621;
+
+  /* Status pills only */
+  --success: #0f7b4a;
+  --success-bg: #e3f4ea;
+  --warning: #8a5a00;
+  --warning-bg: #fdf1d2;
+  --critical: #b42318;
+  --critical-bg: #fde8e6;
+  --neutral-bg: #efedeb;
+
+  /* The top bar is near-black in both themes. */
+  --topbar: #1d1716;
+  --topbar-input: #2e2624;
+  --topbar-border: #3d3432;
+
+  --focus-ring: #7e0917;
+  --shadow-card: 0 1px 0 rgba(26, 20, 19, 0.05);
+  --shadow-popover:
+    0 0 0 1px rgba(26, 20, 19, 0.06), 0 8px 24px -4px rgba(26, 20, 19, 0.16);
+
+  /* Older names still used by screens not yet redesigned. */
+  --brand-soft: var(--brand-tint);
+  --track: var(--border);
+  --danger: var(--critical);
+}
+
+/**
+ * Dark tokens apply when the system is dark and the user has not picked
+ * Light, or whenever they have picked Dark (the theme switch in the top bar
+ * sets data-theme on <html>). The two blocks must stay identical.
+ */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --background: #151211;
+    --surface: #1e1a19;
+    --surface-muted: #252020;
+    --foreground: #f2eeec;
+    --muted: #aaa29e;
+    --subtle: #7a726f;
+    --border: #353030;
+    --border-strong: #4a4341;
+
+    --brand: #9b1424;
+    --brand-hover: #b21c2e;
+    --brand-tint: #3a1d20;
+    --brand-text: #f0a5ae;
+    --gold: #fce9a0;
+    --gold-foreground: #4a3800;
+
+    --chart-line: #e07a86;
+    --chart-compare: #716865;
+    --chart-grid: #2c2726;
+
+    --serp-link: #8ab4f8;
+    --serp-url: #7fc59a;
+
+    --success: #6fd3a2;
+    --success-bg: #12301f;
+    --warning: #f1c766;
+    --warning-bg: #36290a;
+    --critical: #ff978b;
+    --critical-bg: #3e1814;
+    --neutral-bg: #2d2827;
+
+    --topbar: #0e0b0b;
+    --topbar-input: #221c1b;
+    --topbar-border: #342c2b;
+
+    --focus-ring: #e07a86;
+    --shadow-card: 0 1px 0 rgba(0, 0, 0, 0.3);
+    --shadow-popover:
+      0 0 0 1px rgba(255, 255, 255, 0.08), 0 12px 28px -6px rgba(0, 0, 0, 0.6);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --background: #151211;
+  --surface: #1e1a19;
+  --surface-muted: #252020;
+  --foreground: #f2eeec;
+  --muted: #aaa29e;
+  --subtle: #7a726f;
+  --border: #353030;
+  --border-strong: #4a4341;
+
+  --brand: #9b1424;
+  --brand-hover: #b21c2e;
+  --brand-tint: #3a1d20;
+  --brand-text: #f0a5ae;
+  --gold: #fce9a0;
+  --gold-foreground: #4a3800;
+
+  --chart-line: #e07a86;
+  --chart-compare: #716865;
+  --chart-grid: #2c2726;
+
+  --serp-link: #8ab4f8;
+  --serp-url: #7fc59a;
+
+  --success: #6fd3a2;
+  --success-bg: #12301f;
+  --warning: #f1c766;
+  --warning-bg: #36290a;
+  --critical: #ff978b;
+  --critical-bg: #3e1814;
+  --neutral-bg: #2d2827;
+
+  --topbar: #0e0b0b;
+  --topbar-input: #221c1b;
+  --topbar-border: #342c2b;
+
+  --focus-ring: #e07a86;
+  --shadow-card: 0 1px 0 rgba(0, 0, 0, 0.3);
+  --shadow-popover:
+    0 0 0 1px rgba(255, 255, 255, 0.08), 0 12px 28px -6px rgba(0, 0, 0, 0.6);
+}
+
+/**
+ * `inline` matters: the utilities emit the resolved value rather than another
+ * var() hop, which keeps them correct inside elements that redefine a token.
+ *
+ * next/font owns --geist and --geist-mono on <html>. The legacy family keys
+ * (nunito, newsreader, serif) all resolve to Geist now — there is no serif in
+ * the admin — so screens that still name them render in the new face.
+ */
+@theme inline {
+  --font-sans: var(--geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-nunito: var(--geist), ui-sans-serif, system-ui, sans-serif;
+  --font-newsreader: var(--geist), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--geist), ui-sans-serif, system-ui, sans-serif;
+  /* Serif headings on the sign-in screens only; (auth)/layout.jsx loads it. */
+  --font-display: var(--newsreader), Georgia, "Times New Roman", serif;
+
+  /* The one step the default scale lacks: 12 / 13 / 14 / 16 / 20 / 24. */
+  --text-13: 0.8125rem;
+  --text-13--line-height: 1.25rem;
+
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-tint: var(--brand-tint);
+  --color-brand-text: var(--brand-text);
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
+
+  --color-chart-line: var(--chart-line);
+  --color-chart-compare: var(--chart-compare);
+  --color-serp-link: var(--serp-link);
+  --color-serp-url: var(--serp-url);
+
+  --color-success: var(--success);
+  --color-success-bg: var(--success-bg);
+  --color-warning: var(--warning);
+  --color-warning-bg: var(--warning-bg);
+  --color-critical: var(--critical);
+  --color-critical-bg: var(--critical-bg);
+  --color-neutral-bg: var(--neutral-bg);
+
+  --color-topbar: var(--topbar);
+  --color-topbar-input: var(--topbar-input);
+  --color-topbar-border: var(--topbar-border);
+
+  --color-brand-soft: var(--brand-soft);
+  --color-track: var(--track);
+  --color-danger: var(--danger);
+
+  --shadow-card: var(--shadow-card);
+  --shadow-popover: var(--shadow-popover);
+}
+
+/**
+ * One focus ring for everything a keyboard can reach. Components that draw
+ * their own (inputs use a border + ring) opt out with `focus-visible:outline-none`.
+ */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  /* Maroon disappears on the near-black top bar. */
+  [data-topbar] :focus-visible {
+    outline-color: rgb(255 255 255 / 0.85);
+  }
+
+  ::selection {
+    background-color: var(--brand-tint);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/**
+ * Slide-overs (components/ui/drawer.jsx): right for detail panels, left for
+ * the mobile nav, bottom for sheets on small screens.
+ *
+ * A modal <dialog> is display:none until showModal(), so animating it in needs
+ * `allow-discrete` (to let `display` and `overlay` transition) and
+ * @starting-style (the first frame). Browsers without either simply show the
+ * panel without the slide.
+ */
+.drawer-panel {
+  translate: 0 0;
+  transition:
+    translate 200ms ease,
+    display 200ms allow-discrete,
+    overlay 200ms allow-discrete;
+}
+
+@starting-style {
+  .drawer-panel[open] {
+    translate: 100% 0;
+  }
+
+  .drawer-panel[data-side="left"][open] {
+    translate: -100% 0;
+  }
+
+  .drawer-panel[data-side="bottom"][open] {
+    translate: 0 100%;
+  }
+}
+
+.drawer-panel::backdrop {
+  background-color: rgb(20 14 13 / 0.45);
+  transition:
+    background-color 200ms ease,
+    display 200ms allow-discrete,
+    overlay 200ms allow-discrete;
+}
+
+@starting-style {
+  .drawer-panel[open]::backdrop {
+    background-color: rgb(20 14 13 / 0);
+  }
+}
+
+/* Centred modal (components/ui/modal.jsx). */
+.modal-panel {
+  opacity: 1;
+  scale: 1;
+  transition:
+    opacity 150ms ease,
+    scale 150ms ease,
+    display 150ms allow-discrete,
+    overlay 150ms allow-discrete;
+}
+
+@starting-style {
+  .modal-panel[open] {
+    opacity: 0;
+    scale: 0.98;
+  }
+}
+
+.modal-panel::backdrop {
+  background-color: rgb(20 14 13 / 0.45);
+}
+
+/* "Live" dot on the dashboard. */
+@keyframes live-pulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--success) 55%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--success) 0%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--success) 0%, transparent);
+  }
+}
+
+.live-dot {
+  animation: live-pulse 1.8s ease-out infinite;
+}
+
+/* Toasts slide up from the bottom edge. */
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.toast-in {
+  animation: toast-in 180ms ease-out;
+}
+
+/**
+ * Quiet scrollbars. Both syntaxes on purpose: browsers that support the
+ * standard `scrollbar-width` ignore the ::-webkit rules, and older WebKit
+ * ignores the standard one.
+ */
+.scrollbar-subtle,
+.scrollbar-subtle-dark {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--foreground) 22%, transparent)
+    transparent;
+}
+
+.scrollbar-subtle::-webkit-scrollbar,
+.scrollbar-subtle-dark::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-subtle::-webkit-scrollbar-track,
+.scrollbar-subtle-dark::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-subtle::-webkit-scrollbar-thumb,
+.scrollbar-subtle-dark::-webkit-scrollbar-thumb {
+  background-color: color-mix(in srgb, var(--foreground) 22%, transparent);
+  border-radius: 9999px;
+}

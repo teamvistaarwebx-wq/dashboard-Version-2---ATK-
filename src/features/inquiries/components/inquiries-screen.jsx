@@ -59,7 +59,7 @@ export function InquiriesScreen() {
   return (
     <Page title="Inquiries">
       <Card>
-        <div className="flex flex-col gap-2 border-b border-border p-2 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex flex-col gap-2 border-b border-border px-4 pb-3 lg:flex-row lg:items-center lg:justify-between lg:gap-4 lg:pb-0">
           <Tabs label="Inquiry status" tabs={tabs} value={tab} controls="inquiries-table" onChange={(value) => setParams({ status: value === "all" ? null : value, page: null })} />
           <div className="flex flex-col gap-2 sm:flex-row">
             <SearchInput label="Search inquiries" placeholder="Company, contact or number" defaultValue={params.get("q") ?? ""} onSearch={(value) => setParams({ q: value, page: null })} className="sm:w-64" />

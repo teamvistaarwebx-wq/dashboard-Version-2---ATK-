@@ -122,7 +122,7 @@ export function BannerForm({ banner = EMPTY }) {
       </div>
 
       {linkType === "url" ? (
-        <label className="flex w-fit items-center gap-2 font-nunito text-sm text-foreground">
+        <label className="flex w-fit items-center gap-2 text-sm text-foreground">
           <input
             type="checkbox"
             name="openInNewTab"
@@ -134,7 +134,7 @@ export function BannerForm({ banner = EMPTY }) {
         </label>
       ) : null}
 
-      <label className="flex w-fit items-center gap-2 font-nunito text-sm text-foreground">
+      <label className="flex w-fit items-center gap-2 text-sm text-foreground">
         <input
           type="checkbox"
           name="isActive"
@@ -158,7 +158,7 @@ export function BannerForm({ banner = EMPTY }) {
 
         <Link
           href="/banners"
-          className="font-nunito text-sm text-muted underline-offset-2 hover:underline"
+          className="text-sm text-muted underline-offset-2 hover:underline"
         >
           Cancel
         </Link>

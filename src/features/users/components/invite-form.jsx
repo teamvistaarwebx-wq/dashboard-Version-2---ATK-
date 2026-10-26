@@ -95,7 +95,7 @@ function InviteLink({ url }) {
 
   return (
     <div className="flex flex-col gap-2 rounded-lg bg-brand-soft p-4">
-      <p className="text-xs font-semibold text-brand">
+      <p className="text-xs font-semibold text-brand-text">
         Send this link to them — it is shown only once
       </p>
 

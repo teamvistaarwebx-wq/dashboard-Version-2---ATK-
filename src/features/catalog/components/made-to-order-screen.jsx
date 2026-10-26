@@ -59,7 +59,7 @@ export function MadeToOrderScreen() {
     >
       <div className="flex flex-col gap-4">
         <Card>
-          <div className="border-b border-border p-2">
+          <div className="border-b border-border px-4">
             <Tabs label="Status" tabs={tabs} value={tab} controls="mto-table" onChange={(value) => setParams({ status: value === "all" ? null : value })} />
           </div>
           <div id="mto-table">

@@ -58,7 +58,7 @@ export default async function InventoryPage({ searchParams }) {
       >
         <Link
           href="/inventory/movements"
-          className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-border bg-surface px-4 text-sm font-semibold text-foreground transition hover:bg-background"
+          className="inline-flex h-9 items-center justify-center gap-2 rounded-[10px] border border-border bg-surface px-4 text-13 font-medium text-foreground shadow-card transition hover:bg-surface-muted"
         >
           <History className="h-4 w-4" strokeWidth={2} aria-hidden="true" />
           History

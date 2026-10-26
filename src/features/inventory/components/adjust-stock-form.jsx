@@ -47,11 +47,11 @@ export function AdjustStockForm({ row, returnTo, onCancel }) {
         <input type="hidden" name="warehouse" value={row.warehouseId} />
         <input type="hidden" name="returnTo" value={returnTo} />
 
-        <div className="rounded-lg border border-border bg-background p-4">
+        <div className="rounded-lg border border-border bg-surface-muted p-4">
           <p className="font-semibold text-foreground">{row.title}</p>
-          <p className="font-nunito text-xs text-muted">{row.sku}</p>
+          <p className="text-xs text-muted">{row.sku}</p>
 
-          <dl className="mt-3 grid grid-cols-3 gap-2 font-nunito text-xs">
+          <dl className="mt-3 grid grid-cols-3 gap-2 text-xs">
             <Figure label="On hand" value={row.onHand} />
             <Figure label="Held" value={row.reserved} />
             <Figure label="Available" value={row.available} danger={row.available < 0} />
@@ -96,7 +96,7 @@ export function AdjustStockForm({ row, returnTo, onCancel }) {
             should have to press Save to find that out. */}
         {size > 0 ? (
           <p
-            className={`rounded-lg px-3 py-2.5 font-nunito text-sm ${
+            className={`rounded-lg px-3 py-2.5 text-sm ${
               after < 0
                 ? "bg-danger/8 text-danger"
                 : "bg-brand-tint text-brand"
@@ -130,7 +130,7 @@ export function AdjustStockForm({ row, returnTo, onCancel }) {
         {errors._form ? (
           <p
             role="alert"
-            className="mb-3 rounded-lg bg-danger/8 px-3 py-2.5 font-nunito text-sm text-danger"
+            className="mb-3 rounded-lg bg-danger/8 px-3 py-2.5 text-sm text-danger"
           >
             {errors._form}
           </p>
@@ -141,7 +141,7 @@ export function AdjustStockForm({ row, returnTo, onCancel }) {
             type="button"
             onClick={onCancel}
             disabled={isPending}
-            className="inline-flex h-11 items-center justify-center rounded-lg border border-border bg-surface px-5 font-nunito text-sm font-semibold text-foreground transition hover:bg-background disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex h-9 items-center justify-center rounded-[10px] border border-border bg-surface px-5 text-13 font-medium text-foreground shadow-card transition hover:bg-surface-muted disabled:cursor-not-allowed disabled:opacity-60"
           >
             Cancel
           </button>
@@ -149,7 +149,7 @@ export function AdjustStockForm({ row, returnTo, onCancel }) {
           <button
             type="submit"
             disabled={isPending || size === 0 || after < 0}
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-brand px-5 font-nunito text-sm font-semibold text-white transition hover:bg-brand/90 disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex h-9 items-center justify-center gap-2 rounded-[10px] bg-brand px-5 text-13 font-medium text-white shadow-card transition hover:bg-brand-hover disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isPending ? (
               <>

@@ -48,13 +48,13 @@ export function Modal({ title, onClose, children, footer, size = "md", dismissib
       aria-labelledby={titleId}
       onCancel={handleCancel}
       onClick={handleClick}
-      className={`modal-panel m-auto max-h-[min(44rem,calc(100dvh-2rem))] max-w-none overflow-hidden rounded-xl border border-border bg-surface p-0 text-foreground shadow-popover ${
+      className={`modal-panel m-auto max-h-[min(44rem,calc(100dvh-2rem))] max-w-none overflow-hidden rounded-2xl border border-border bg-surface p-0 text-foreground shadow-popover ${
         WIDTHS[size] ?? WIDTHS.md
       }`}
     >
       <div className="flex max-h-[inherit] flex-col">
-        <header className="flex shrink-0 items-center justify-between gap-4 border-b border-border px-4 py-3">
-          <h2 id={titleId} className="text-base font-semibold">
+        <header className="flex shrink-0 items-center justify-between gap-4 border-b border-border px-5 py-3.5">
+          <h2 id={titleId} className="text-base font-semibold tracking-tight">
             {title}
           </h2>
           {dismissible ? (
@@ -72,7 +72,7 @@ export function Modal({ title, onClose, children, footer, size = "md", dismissib
         <div className="min-h-0 flex-1 overflow-y-auto">{children}</div>
 
         {footer ? (
-          <footer className="flex shrink-0 flex-wrap items-center justify-end gap-2 border-t border-border px-4 py-3">
+          <footer className="flex shrink-0 flex-wrap items-center justify-end gap-2 border-t border-border bg-surface-muted/60 px-5 py-3">
             {footer}
           </footer>
         ) : null}

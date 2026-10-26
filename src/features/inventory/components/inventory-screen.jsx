@@ -119,7 +119,7 @@ export function InventoryScreen() {
         </>
       }
     >
-      <div className="mb-4 flex items-start gap-2.5 rounded-xl border border-border bg-surface px-4 py-3 text-13 shadow-card">
+      <div className="mb-4 flex items-start gap-2.5 rounded-2xl border border-border bg-surface px-4 py-3 text-13 shadow-card">
         <Info className="mt-0.5 size-4 shrink-0 text-muted" aria-hidden="true" />
         <p>
           Stock is set when you create a product. Use this page to adjust counts.{" "}
@@ -128,7 +128,7 @@ export function InventoryScreen() {
       </div>
 
       <Card>
-        <div className="flex flex-col gap-2 border-b border-border p-2 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex flex-col gap-2 border-b border-border px-4 pb-3 lg:flex-row lg:items-center lg:justify-between lg:gap-4 lg:pb-0">
           <Tabs label="Stock level" tabs={tabs} value={tab.value} controls="inventory-table" onChange={(value) => setParams({ view: value === "all" ? null : value, page: null })} />
           <SearchInput label="Search inventory" placeholder="Product or SKU" defaultValue={params.get("q") ?? ""} onSearch={(value) => setParams({ q: value, page: null })} className="lg:w-72" />
         </div>

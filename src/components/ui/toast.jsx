@@ -41,7 +41,7 @@ export function ToastProvider({ children }) {
           <div
             key={toast.id}
             role="status"
-            className="toast-in pointer-events-auto flex max-w-md items-center gap-2.5 rounded-xl bg-topbar py-2.5 pl-3.5 pr-2 text-sm text-white shadow-popover"
+            className="toast-in pointer-events-auto flex max-w-md items-center gap-2.5 rounded-full bg-topbar py-2 pl-4 pr-2 text-13 font-medium text-white shadow-popover"
           >
             {toast.tone === "critical" ? (
               <CircleAlert className="size-4 shrink-0 text-[#ff978b]" aria-hidden="true" />
@@ -53,7 +53,7 @@ export function ToastProvider({ children }) {
               type="button"
               onClick={() => dismiss(toast.id)}
               aria-label="Dismiss"
-              className="rounded-md p-1 text-white/60 transition hover:bg-white/10 hover:text-white"
+              className="rounded-full p-1 text-white/60 transition hover:bg-white/10 hover:text-white"
             >
               <X className="size-4" aria-hidden="true" />
             </button>

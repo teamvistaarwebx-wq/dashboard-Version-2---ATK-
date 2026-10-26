@@ -3,7 +3,8 @@
 import { useRef } from "react";
 
 /**
- * The view tabs across the top of a table card: All / Unfulfilled / …
+ * The view tabs across the top of a table card: All / Unfulfilled / … —
+ * underlined, with the count in a small pill.
  *
  * ARIA tabs with roving focus: ←/→ move between tabs, Home/End jump. They act
  * as filters on one shared table rather than switching panels, so each tab
@@ -33,7 +34,7 @@ export function Tabs({ tabs, value, onChange, label, controls, className = "" })
       role="tablist"
       aria-label={label}
       onKeyDown={handleKeyDown}
-      className={`scrollbar-subtle relative flex items-center gap-1 overflow-x-auto ${className}`}
+      className={`scrollbar-subtle relative flex items-center gap-5 overflow-x-auto ${className}`}
     >
       {tabs.map((tab) => {
         const selected = tab.value === value;
@@ -46,15 +47,21 @@ export function Tabs({ tabs, value, onChange, label, controls, className = "" })
             aria-controls={controls}
             tabIndex={selected ? 0 : -1}
             onClick={() => onChange(tab.value)}
-            className={`inline-flex h-8 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-lg px-2.5 text-13 font-medium transition-colors ${
+            className={`relative inline-flex h-12 shrink-0 items-center gap-1.5 whitespace-nowrap text-13 font-medium transition-colors after:absolute after:inset-x-0 after:-bottom-px after:h-0.5 after:rounded-full ${
               selected
-                ? "bg-neutral-bg text-foreground"
-                : "text-muted hover:bg-neutral-bg/60 hover:text-foreground"
+                ? "text-foreground after:bg-brand"
+                : "text-muted after:bg-transparent hover:text-foreground"
             }`}
           >
             {tab.label}
             {tab.count !== undefined ? (
-              <span className="font-mono text-xs text-muted">{tab.count}</span>
+              <span
+                className={`rounded-full px-1.5 text-[11px] font-semibold leading-[18px] tabular-nums ${
+                  selected ? "bg-brand-tint text-brand-text" : "bg-neutral-bg text-muted"
+                }`}
+              >
+                {tab.count}
+              </span>
             ) : null}
           </button>
         );

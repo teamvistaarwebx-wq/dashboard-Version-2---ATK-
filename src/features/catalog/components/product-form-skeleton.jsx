@@ -54,14 +54,14 @@ export function ProductFormSkeleton() {
         <Field height="h-44" />
 
         {Array.from({ length: 4 }, (_, i) => (
-          <Skeleton key={i} className="h-11 rounded-lg" />
+          <Skeleton key={i} className="h-9 rounded-[10px]" />
         ))}
       </div>
 
       <footer className="shrink-0 border-t border-border px-6 py-4">
         <div className="flex items-center justify-end gap-3">
-          <Skeleton className="h-11 w-24 rounded-lg" />
-          <Skeleton className="h-11 w-32 rounded-lg" />
+          <Skeleton className="h-9 w-24 rounded-[10px]" />
+          <Skeleton className="h-9 w-32 rounded-[10px]" />
         </div>
       </footer>
     </div>

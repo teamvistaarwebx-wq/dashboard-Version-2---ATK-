@@ -21,7 +21,7 @@ export function AvailabilityPill({
 
   return (
     <span
-      className={`inline-block rounded-full px-2.5 py-1 font-nunito text-xs font-medium ${className}`}
+      className={`inline-block rounded-full px-2.5 py-1 text-xs font-medium ${className}`}
     >
       {label}
     </span>

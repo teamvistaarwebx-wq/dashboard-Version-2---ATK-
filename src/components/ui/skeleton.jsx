@@ -16,27 +16,26 @@
 export function Skeleton({ className = "" }) {
   return (
     <div
-      className={`animate-pulse rounded-md bg-border/60 ${className}`}
+      className={`animate-pulse rounded-md bg-neutral-bg ${className}`}
       aria-hidden="true"
     />
   );
 }
 
 /**
- * Stands in for `PageHeader`. Matched to its real padding and border so the
- * sticky bar does not shift by a pixel when the page itself renders — this one
- * *is* worth being exact about, because the header is the part of the screen
- * the eye is already resting on.
+ * Stands in for the title row of `Page` / `PageHeader`, at the same width and
+ * gutters, so the title does not jump sideways when the page itself renders —
+ * the header is the part of the screen the eye is already resting on.
  */
 export function PageHeaderSkeleton({ hasAction = false }) {
   return (
-    <header className="sticky top-0 z-20 flex flex-wrap items-start justify-between gap-4 border-b border-border bg-background px-6 py-5 sm:px-8">
+    <header className="mx-auto flex w-full max-w-[1280px] flex-wrap items-end justify-between gap-4 px-4 pt-6 sm:px-6 sm:pt-7 lg:px-8">
       <div>
-        <Skeleton className="h-8 w-40" />
+        <Skeleton className="h-8 w-44" />
         <Skeleton className="mt-2 h-4 w-72 max-w-full" />
       </div>
 
-      {hasAction ? <Skeleton className="h-11 w-36 rounded-lg" /> : null}
+      {hasAction ? <Skeleton className="h-9 w-32 rounded-[10px]" /> : null}
     </header>
   );
 }
@@ -45,10 +44,10 @@ export function PageHeaderSkeleton({ hasAction = false }) {
 export function FilterBarSkeleton({ chips = 6 }) {
   return (
     <div className="flex flex-wrap items-center gap-3">
-      <Skeleton className="h-10 w-72 max-w-full rounded-full" />
+      <Skeleton className="h-9 w-72 max-w-full rounded-[10px]" />
 
       {Array.from({ length: chips }, (_, i) => (
-        <Skeleton key={i} className="h-10 w-28 rounded-full" />
+        <Skeleton key={i} className="h-8 w-24 rounded-full" />
       ))}
     </div>
   );
@@ -63,8 +62,8 @@ export function FilterBarSkeleton({ chips = 6 }) {
  */
 export function TableSkeleton({ rows = 8, columns = 5 }) {
   return (
-    <div className="overflow-hidden rounded-xl border border-border bg-surface">
-      <div className="flex gap-4 border-b border-border bg-background px-4 py-3">
+    <div className="overflow-hidden rounded-2xl border border-border bg-surface">
+      <div className="flex gap-4 border-b border-border bg-surface-muted px-4 py-3">
         {Array.from({ length: columns }, (_, i) => (
           <Skeleton key={i} className="h-3 flex-1" />
         ))}
@@ -95,7 +94,7 @@ export function CardListSkeleton({ count = 3, height = "h-36" }) {
   return (
     <div className="flex flex-col gap-4">
       {Array.from({ length: count }, (_, i) => (
-        <Skeleton key={i} className={`${height} rounded-xl`} />
+        <Skeleton key={i} className={`${height} rounded-2xl`} />
       ))}
     </div>
   );
@@ -107,8 +106,8 @@ export function CardListSkeleton({ count = 3, height = "h-36" }) {
 export function DetailSkeleton() {
   return (
     <div className="flex flex-col gap-5">
-      <Skeleton className="h-40 rounded-xl" />
-      <Skeleton className="h-64 rounded-xl" />
+      <Skeleton className="h-40 rounded-2xl" />
+      <Skeleton className="h-64 rounded-2xl" />
     </div>
   );
 }
@@ -121,7 +120,7 @@ export function PageSkeleton({ hasAction = false, children }) {
   return (
     <>
       <PageHeaderSkeleton hasAction={hasAction} />
-      <div className="px-6 py-6 sm:px-8">{children}</div>
+      <div className="mx-auto w-full max-w-[1280px] px-4 py-6 sm:px-6 lg:px-8">{children}</div>
     </>
   );
 }

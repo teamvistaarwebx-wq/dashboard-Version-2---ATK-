@@ -10,7 +10,7 @@ const OPTIONS = [
   { value: "system", label: "Match system", icon: Monitor },
 ];
 
-/** Sun / moon button in the top bar; opens Light, Dark and Match system. */
+/** Sun / moon button in the header; opens Light, Dark and Match system. */
 export function ThemeSwitch() {
   const choice = useThemeChoice();
   const current = OPTIONS.find((option) => option.value === choice) ?? OPTIONS[2];
@@ -19,7 +19,7 @@ export function ThemeSwitch() {
   return (
     <Menu
       label={`Theme: ${current.label}`}
-      buttonClassName="flex size-8 items-center justify-center rounded-lg text-white/85 transition hover:bg-white/10 hover:text-white"
+      buttonClassName="flex size-9 items-center justify-center rounded-[10px] border border-border bg-surface text-muted shadow-card transition hover:border-border-strong hover:text-foreground"
       buttonContent={<Icon className="size-[18px]" aria-hidden="true" />}
       items={OPTIONS.map((option) => {
         const OptionIcon = option.icon;

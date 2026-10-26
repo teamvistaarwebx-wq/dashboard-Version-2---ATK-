@@ -8,22 +8,27 @@
  * if a shade is missing, it is added here so dark mode gets it too.
  *
  * The brand colours (maroon, tint, gold) come from the storefront. Everything
- * else is a warm neutral ramp chosen to sit quietly around them.
+ * else is a warm neutral ramp chosen to sit quietly around them: a darker
+ * canvas behind the sidebar, the page panel floating on it, white cards on
+ * the panel.
  */
 :root {
   color-scheme: light;
 
   /* Surfaces and text */
-  --background: #f3f2f1;
+  /* The canvas the sidebar sits on; the page panel floats above it. */
+  --canvas: #f1eeeb;
+  /* The page panel. */
+  --background: #fbfaf9;
   --surface: #ffffff;
   /* Table headers, row hover, inset wells. */
-  --surface-muted: #f9f8f7;
+  --surface-muted: #f7f5f3;
   --foreground: #1c1a19;
   --muted: #6b6461;
   /* Placeholders and disabled text — quieter than muted. */
   --subtle: #9a928f;
-  --border: #e3e1df;
-  --border-strong: #cfcbc8;
+  --border: #ebe7e4;
+  --border-strong: #d8d3cf;
 
   /* Brand */
   --brand: #7e0917;
@@ -33,11 +38,14 @@
   --brand-text: #7e0917;
   --gold: #fce9a0;
   --gold-foreground: #5c4600;
+  /* The wordmark in the sidebar. */
+  --logo: #7e0917;
 
   /* Charts */
   --chart-line: #7e0917;
-  --chart-compare: #b8aeac;
-  --chart-grid: #eeecea;
+  --chart-compare: #c4bbb8;
+  --chart-grid: #f0edea;
+  --chart-accent: #e2b93b;
 
   /* Search-result preview on the product page. */
   --serp-link: #1a0dab;
@@ -45,46 +53,52 @@
 
   /* Status pills only */
   --success: #0f7b4a;
-  --success-bg: #e3f4ea;
+  --success-bg: #e6f5ec;
   --warning: #8a5a00;
-  --warning-bg: #fdf1d2;
+  --warning-bg: #fdf3d8;
   --critical: #b42318;
-  --critical-bg: #fde8e6;
-  --neutral-bg: #efedeb;
+  --critical-bg: #fdecea;
+  --neutral-bg: #f1eeeb;
 
-  /* The top bar is near-black in both themes. */
+  /* Toasts are near-black in both themes. */
   --topbar: #1d1716;
   --topbar-input: #2e2624;
   --topbar-border: #3d3432;
 
   --focus-ring: #7e0917;
-  --shadow-card: 0 1px 0 rgba(26, 20, 19, 0.05);
+  --shadow-card: 0 1px 2px rgba(26, 20, 19, 0.04);
+  --shadow-panel:
+    0 0 0 1px rgba(26, 20, 19, 0.05), 0 1px 3px rgba(26, 20, 19, 0.05),
+    0 8px 24px -12px rgba(26, 20, 19, 0.08);
+  --shadow-raised:
+    0 1px 2px rgba(26, 20, 19, 0.06), 0 0 0 1px rgba(26, 20, 19, 0.06);
   --shadow-popover:
-    0 0 0 1px rgba(26, 20, 19, 0.06), 0 8px 24px -4px rgba(26, 20, 19, 0.16);
+    0 0 0 1px rgba(26, 20, 19, 0.06), 0 12px 32px -8px rgba(26, 20, 19, 0.18);
 
   /* Older names still used by screens not yet redesigned. */
   --brand-soft: var(--brand-tint);
-  --track: var(--border);
+  --track: var(--neutral-bg);
   --danger: var(--critical);
 }
 
 /**
  * Dark tokens apply when the system is dark and the user has not picked
- * Light, or whenever they have picked Dark (the theme switch in the top bar
- * sets data-theme on <html>). The two blocks must stay identical.
+ * Light, or whenever they have picked Dark (the theme switch sets
+ * data-theme on <html>). The two blocks must stay identical.
  */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
 
-    --background: #151211;
-    --surface: #1e1a19;
-    --surface-muted: #252020;
+    --canvas: #0f0c0b;
+    --background: #161312;
+    --surface: #1d1918;
+    --surface-muted: #241f1e;
     --foreground: #f2eeec;
     --muted: #aaa29e;
     --subtle: #7a726f;
-    --border: #353030;
-    --border-strong: #4a4341;
+    --border: #2f2928;
+    --border-strong: #453d3b;
 
     --brand: #9b1424;
     --brand-hover: #b21c2e;
@@ -92,10 +106,12 @@
     --brand-text: #f0a5ae;
     --gold: #fce9a0;
     --gold-foreground: #4a3800;
+    --logo: #f2eeec;
 
     --chart-line: #e07a86;
-    --chart-compare: #716865;
-    --chart-grid: #2c2726;
+    --chart-compare: #5e5654;
+    --chart-grid: #2a2423;
+    --chart-accent: #e8c45a;
 
     --serp-link: #8ab4f8;
     --serp-url: #7fc59a;
@@ -106,30 +122,35 @@
     --warning-bg: #36290a;
     --critical: #ff978b;
     --critical-bg: #3e1814;
-    --neutral-bg: #2d2827;
+    --neutral-bg: #2a2423;
 
-    --topbar: #0e0b0b;
+    --topbar: #2a2322;
     --topbar-input: #221c1b;
-    --topbar-border: #342c2b;
+    --topbar-border: #3d3432;
 
     --focus-ring: #e07a86;
-    --shadow-card: 0 1px 0 rgba(0, 0, 0, 0.3);
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-panel:
+      0 0 0 1px rgba(255, 255, 255, 0.05), 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+    --shadow-raised:
+      0 1px 2px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.06);
     --shadow-popover:
-      0 0 0 1px rgba(255, 255, 255, 0.08), 0 12px 28px -6px rgba(0, 0, 0, 0.6);
+      0 0 0 1px rgba(255, 255, 255, 0.08), 0 16px 36px -8px rgba(0, 0, 0, 0.65);
   }
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  --background: #151211;
-  --surface: #1e1a19;
-  --surface-muted: #252020;
+  --canvas: #0f0c0b;
+  --background: #161312;
+  --surface: #1d1918;
+  --surface-muted: #241f1e;
   --foreground: #f2eeec;
   --muted: #aaa29e;
   --subtle: #7a726f;
-  --border: #353030;
-  --border-strong: #4a4341;
+  --border: #2f2928;
+  --border-strong: #453d3b;
 
   --brand: #9b1424;
   --brand-hover: #b21c2e;
@@ -137,10 +158,12 @@
   --brand-text: #f0a5ae;
   --gold: #fce9a0;
   --gold-foreground: #4a3800;
+  --logo: #f2eeec;
 
   --chart-line: #e07a86;
-  --chart-compare: #716865;
-  --chart-grid: #2c2726;
+  --chart-compare: #5e5654;
+  --chart-grid: #2a2423;
+  --chart-accent: #e8c45a;
 
   --serp-link: #8ab4f8;
   --serp-url: #7fc59a;
@@ -151,16 +174,20 @@
   --warning-bg: #36290a;
   --critical: #ff978b;
   --critical-bg: #3e1814;
-  --neutral-bg: #2d2827;
+  --neutral-bg: #2a2423;
 
-  --topbar: #0e0b0b;
+  --topbar: #2a2322;
   --topbar-input: #221c1b;
-  --topbar-border: #342c2b;
+  --topbar-border: #3d3432;
 
   --focus-ring: #e07a86;
-  --shadow-card: 0 1px 0 rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-panel:
+    0 0 0 1px rgba(255, 255, 255, 0.05), 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+  --shadow-raised:
+    0 1px 2px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.06);
   --shadow-popover:
-    0 0 0 1px rgba(255, 255, 255, 0.08), 0 12px 28px -6px rgba(0, 0, 0, 0.6);
+    0 0 0 1px rgba(255, 255, 255, 0.08), 0 16px 36px -8px rgba(0, 0, 0, 0.65);
 }
 
 /**
@@ -184,6 +211,7 @@
   --text-13: 0.8125rem;
   --text-13--line-height: 1.25rem;
 
+  --color-canvas: var(--canvas);
   --color-background: var(--background);
   --color-surface: var(--surface);
   --color-surface-muted: var(--surface-muted);
@@ -199,9 +227,11 @@
   --color-brand-text: var(--brand-text);
   --color-gold: var(--gold);
   --color-gold-foreground: var(--gold-foreground);
+  --color-logo: var(--logo);
 
   --color-chart-line: var(--chart-line);
   --color-chart-compare: var(--chart-compare);
+  --color-chart-accent: var(--chart-accent);
   --color-serp-link: var(--serp-link);
   --color-serp-url: var(--serp-url);
 
@@ -222,6 +252,8 @@
   --color-danger: var(--danger);
 
   --shadow-card: var(--shadow-card);
+  --shadow-panel: var(--shadow-panel);
+  --shadow-raised: var(--shadow-raised);
   --shadow-popover: var(--shadow-popover);
 }
 
@@ -235,7 +267,7 @@
     outline-offset: 2px;
   }
 
-  /* Maroon disappears on the near-black top bar. */
+  /* Maroon disappears on the maroon save bar. */
   [data-topbar] :focus-visible {
     outline-color: rgb(255 255 255 / 0.85);
   }
@@ -274,12 +306,13 @@
 }
 
 @starting-style {
+  /* Past the panel's own width plus the gap it floats in. */
   .drawer-panel[open] {
-    translate: 100% 0;
+    translate: calc(100% + 1rem) 0;
   }
 
   .drawer-panel[data-side="left"][open] {
-    translate: -100% 0;
+    translate: calc(-100% - 1rem) 0;
   }
 
   .drawer-panel[data-side="bottom"][open] {
@@ -288,7 +321,8 @@
 }
 
 .drawer-panel::backdrop {
-  background-color: rgb(20 14 13 / 0.45);
+  background-color: rgb(20 14 13 / 0.4);
+  backdrop-filter: blur(2px);
   transition:
     background-color 200ms ease,
     display 200ms allow-discrete,
@@ -320,7 +354,17 @@
 }
 
 .modal-panel::backdrop {
-  background-color: rgb(20 14 13 / 0.45);
+  background-color: rgb(20 14 13 / 0.4);
+  backdrop-filter: blur(2px);
+}
+
+/**
+ * The wordmark, painted in a token through the logo's own alpha so it can be
+ * maroon on the light sidebar and cream on the dark one from a single file.
+ */
+.logo-mark {
+  background-color: var(--logo);
+  mask: url("/images/logo/logo.svg") no-repeat left center / contain;
 }
 
 /* "Live" dot on the dashboard. */

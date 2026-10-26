@@ -225,12 +225,12 @@ export function Select({
         disabled={disabled}
         onClick={() => (open ? hide() : show())}
         onKeyDown={handleKeyDown}
-        className={`group inline-flex ${size === "sm" ? "h-8 text-13" : "h-9 text-sm"} w-full items-center justify-between gap-2 rounded-lg border bg-surface px-3 text-left outline-none transition focus-visible:outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:bg-surface-muted disabled:opacity-70 ${
+        className={`group inline-flex ${size === "sm" ? "h-8 text-13" : "h-9 text-sm"} w-full items-center justify-between gap-2 rounded-[10px] border bg-surface px-3 text-left shadow-card outline-none transition focus-visible:outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:bg-surface-muted disabled:opacity-70 ${
           invalid
-            ? "border-critical focus-visible:border-critical focus-visible:ring-critical/15"
+            ? "border-critical focus-visible:border-critical focus-visible:ring-critical/12"
             : open
-              ? "border-brand ring-2 ring-brand/15"
-              : "border-border-strong focus-visible:border-brand focus-visible:ring-brand/15"
+              ? "border-brand ring-[3px] ring-brand/12"
+              : "border-border-strong/80 hover:border-border-strong focus-visible:border-brand focus-visible:ring-brand/12"
         } ${className}`}
       >
         <span className={`truncate ${selected ? "text-foreground" : "text-muted"}`}>

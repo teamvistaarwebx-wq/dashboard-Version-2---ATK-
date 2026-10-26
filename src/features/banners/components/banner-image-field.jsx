@@ -125,7 +125,7 @@ export function BannerImageField({
 
   return (
     <div className="flex flex-col gap-2">
-      <p className="font-nunito text-xs font-semibold text-foreground">
+      <p className="text-xs font-semibold text-foreground">
         {label}
         <span className="text-danger" aria-hidden="true">
           {" "}
@@ -137,7 +137,7 @@ export function BannerImageField({
 
       <div className="flex flex-col gap-3 rounded-lg border border-border bg-surface p-3">
         {image?.url ? (
-          <figure className="group relative overflow-hidden rounded-md border border-border bg-background">
+          <figure className="group relative overflow-hidden rounded-md border border-border bg-surface-muted">
             {/* A plain <img> — the same call as the products table. next/image
                 would need every R2 host allow-listed in next.config.mjs. */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -165,7 +165,7 @@ export function BannerImageField({
             type="button"
             disabled={disabled || uploading}
             onClick={() => inputRef.current?.click()}
-            className="inline-flex items-center gap-2 rounded-lg border border-dashed border-border bg-background px-3 py-2 font-nunito text-xs font-semibold text-muted transition hover:border-brand/50 hover:text-brand disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex items-center gap-2 rounded-lg border border-dashed border-border bg-surface-muted px-3 py-2 text-xs font-semibold text-muted transition hover:border-brand/50 hover:text-brand disabled:cursor-not-allowed disabled:opacity-60"
           >
             {uploading ? (
               <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
@@ -176,7 +176,7 @@ export function BannerImageField({
           </button>
 
           {image?.width ? (
-            <span className="font-nunito text-xs text-muted">
+            <span className="text-xs text-muted">
               {image.width} × {image.height} · {ratio.toFixed(2)}:1
             </span>
           ) : null}
@@ -188,7 +188,7 @@ export function BannerImageField({
           <div className="flex flex-col gap-1.5">
             <label
               htmlFor={`${name}-alt`}
-              className="font-nunito text-xs font-semibold text-foreground"
+              className="text-xs font-semibold text-foreground"
             >
               Describe this image
             </label>
@@ -199,10 +199,10 @@ export function BannerImageField({
               disabled={disabled}
               onChange={(event) => setAlt(event.target.value)}
               placeholder="Diwali gifting collection — handwoven sarees"
-              className="font-nunito h-10 rounded-lg border border-border bg-background px-3 text-sm text-foreground outline-none transition focus:border-brand/50 focus:ring-2 focus:ring-brand/10"
+              className="h-10 rounded-lg border border-border bg-surface-muted px-3 text-sm text-foreground outline-none transition focus:border-brand/50 focus:ring-2 focus:ring-brand/10"
             />
             {altError ? (
-              <p role="alert" className="font-nunito text-xs text-danger">
+              <p role="alert" className="text-xs text-danger">
                 {altError}
               </p>
             ) : null}
@@ -224,7 +224,7 @@ export function BannerImageField({
         block — a deliberately off-ratio hero is a judgement call, and this
         screen's job is to make sure it is one.
       */}
-      <p aria-live="polite" className="font-nunito text-xs text-muted">
+      <p aria-live="polite" className="text-xs text-muted">
         {uploadError || error ? (
           <span className="text-danger">{uploadError || error}</span>
         ) : willCrop ? (

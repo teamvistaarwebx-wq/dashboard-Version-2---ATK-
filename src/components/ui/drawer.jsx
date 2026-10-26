@@ -11,11 +11,14 @@ import { X } from "lucide-react";
  * "bottom" (sheets on phones). The shell owns the header; `children` gets a
  * `min-h-0 flex-1` column so a form inside can scroll above its own footer.
  *
+ * Side panels float 8px in from the viewport edge with rounded corners, so
+ * they read as a layer over the page rather than part of it.
+ *
  * Mounted only while open. The slide is CSS (`.drawer-panel` in globals.css).
  */
 const SIDES = {
-  right: "m-0 ml-auto h-dvh max-h-dvh w-[min(32rem,100vw)] border-l",
-  left: "m-0 mr-auto h-dvh max-h-dvh w-[min(18rem,85vw)] border-r",
+  right: "my-2 ml-auto mr-2 h-[calc(100dvh-1rem)] max-h-[calc(100dvh-1rem)] w-[min(32rem,calc(100vw-1rem))] rounded-2xl border shadow-popover",
+  left: "my-2 ml-2 mr-auto h-[calc(100dvh-1rem)] max-h-[calc(100dvh-1rem)] w-[min(18rem,85vw)] overflow-hidden rounded-2xl border shadow-popover",
   bottom: "m-0 mt-auto max-h-[90dvh] w-full max-w-none rounded-t-2xl border-t",
 };
 
@@ -60,8 +63,8 @@ export function Drawer({ title, onClose, children, side = "right", hideHeader = 
     >
       <div className="flex h-full max-h-[inherit] flex-col">
         {hideHeader ? null : (
-          <header className="flex shrink-0 items-center justify-between gap-4 border-b border-border px-4 py-3">
-            <h2 id={titleId} className="text-base font-semibold text-foreground">
+          <header className="flex shrink-0 items-center justify-between gap-4 border-b border-border px-5 py-3.5">
+            <h2 id={titleId} className="text-base font-semibold tracking-tight text-foreground">
               {title}
             </h2>
 

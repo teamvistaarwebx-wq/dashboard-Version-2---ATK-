@@ -8,7 +8,7 @@ import { useMockStoreOptional } from "@/mocks/store";
 import { searchMock } from "@/mocks/search";
 
 /**
- * Search in the top bar: products, orders and inquiries in one dropdown.
+ * Search in the header: products, orders and inquiries in one dropdown.
  *
  * In mock mode results come straight from the mock store. Against the real
  * database there is no cross-collection search endpoint yet, so the dropdown
@@ -105,7 +105,7 @@ export function GlobalSearch({ onClose, autoFocus = false, className = "" }) {
   return (
     <div ref={rootRef} className={`relative w-full ${className}`}>
       <Search
-        className="pointer-events-none absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-white/55"
+        className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-subtle"
         aria-hidden="true"
       />
       <input
@@ -119,7 +119,7 @@ export function GlobalSearch({ onClose, autoFocus = false, className = "" }) {
         aria-autocomplete="list"
         autoFocus={autoFocus}
         value={query}
-        placeholder="Search"
+        placeholder="Search orders, products, inquiries…"
         onChange={(event) => {
           setQuery(event.target.value);
           setActive(0);
@@ -127,7 +127,7 @@ export function GlobalSearch({ onClose, autoFocus = false, className = "" }) {
         }}
         onFocus={() => setOpen(true)}
         onKeyDown={handleKeyDown}
-        className="h-8 w-full rounded-lg border border-topbar-border bg-topbar-input pl-8 pr-14 text-sm text-white outline-none transition placeholder:text-white/55 hover:border-white/25 focus:border-white/40 focus-visible:outline-none focus:ring-2 focus:ring-white/15 [&::-webkit-search-cancel-button]:hidden"
+        className="h-9 w-full rounded-[10px] border border-border bg-surface pl-9 pr-14 text-13 text-foreground shadow-card outline-none transition placeholder:text-subtle hover:border-border-strong focus:border-brand focus-visible:outline-none focus:ring-[3px] focus:ring-brand/12 [&::-webkit-search-cancel-button]:hidden"
       />
       {query ? (
         <button
@@ -137,12 +137,12 @@ export function GlobalSearch({ onClose, autoFocus = false, className = "" }) {
             setQuery("");
             inputRef.current?.focus();
           }}
-          className="absolute right-2 top-1/2 -translate-y-1/2 rounded p-0.5 text-white/60 hover:text-white"
+          className="absolute right-2 top-1/2 -translate-y-1/2 rounded p-0.5 text-muted hover:text-foreground"
         >
           <X className="size-4" aria-hidden="true" />
         </button>
       ) : (
-        <kbd className="pointer-events-none absolute right-2 top-1/2 hidden -translate-y-1/2 rounded border border-white/15 px-1.5 font-mono text-[11px] text-white/55 sm:block">
+        <kbd className="pointer-events-none absolute right-2 top-1/2 hidden -translate-y-1/2 rounded-md border border-border bg-surface-muted px-1.5 font-mono text-[11px] text-muted sm:block">
           ⌘K
         </kbd>
       )}
@@ -152,7 +152,7 @@ export function GlobalSearch({ onClose, autoFocus = false, className = "" }) {
         role="listbox"
         aria-label="Search results"
         hidden={!showList}
-        className="absolute inset-x-0 top-full z-40 mt-2 max-h-[min(28rem,70dvh)] overflow-y-auto rounded-xl bg-surface p-1 text-foreground shadow-popover"
+        className="absolute right-0 top-full z-40 mt-2 max-h-[min(28rem,70dvh)] w-full overflow-y-auto rounded-2xl border border-border bg-surface p-1.5 text-foreground shadow-popover md:w-[26rem]"
       >
         {results.length === 0 ? (
           <p className="px-3 py-6 text-center text-sm text-muted">No results for “{query.trim()}”</p>

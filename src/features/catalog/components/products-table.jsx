@@ -22,9 +22,9 @@ export function ProductsTable({
   showStock = true,
 }) {
   return (
-    <div className="relative overflow-x-auto rounded-xl border border-border bg-surface">
+    <div className="relative overflow-x-auto rounded-2xl border border-border bg-surface">
       <table className="w-full min-w-[48rem] text-left text-sm">
-        <thead className="border-b border-border bg-background font-nunito text-xs uppercase tracking-wide text-muted">
+        <thead className="border-b border-border bg-surface-muted text-xs uppercase tracking-wide text-muted">
           <tr>
             <th scope="col" className="px-4 py-3 font-semibold">
               Product
@@ -64,10 +64,10 @@ export function ProductsTable({
 
 function ProductRow({ product, canDelete, showStock, editHref }) {
   return (
-    <tr className="transition hover:bg-background">
+    <tr className="transition hover:bg-surface-muted">
       <td className="px-4 py-3">
         <div className="flex items-center gap-3">
-          <div className="h-12 w-12 shrink-0 overflow-hidden rounded-md border border-border bg-background">
+          <div className="h-12 w-12 shrink-0 overflow-hidden rounded-md border border-border bg-surface-muted">
             {product.imageUrl ? (
               /**
                * A plain <img>, not next/image: these are 48px thumbnails on
@@ -97,14 +97,14 @@ function ProductRow({ product, canDelete, showStock, editHref }) {
               {/* Only when it is NOT live. Without this a draft reads exactly
                   like something a customer can buy today. */}
               {product.status !== PRODUCT_STATUS.ACTIVE ? (
-                <span className="shrink-0 rounded-full border border-border px-2 py-0.5 font-nunito text-[0.625rem] font-medium uppercase tracking-wide text-muted">
+                <span className="shrink-0 rounded-full border border-border px-2 py-0.5 text-[0.625rem] font-medium uppercase tracking-wide text-muted">
                   {product.status}
                 </span>
               ) : null}
             </p>
 
             {product.subtitle ? (
-              <p className="truncate font-nunito text-xs text-muted">
+              <p className="truncate text-xs text-muted">
                 {product.subtitle}
               </p>
             ) : null}

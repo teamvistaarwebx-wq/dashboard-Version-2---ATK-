@@ -54,7 +54,7 @@ export function ChipsInput({
 
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={inputId} className="font-nunito text-xs font-semibold text-foreground">
+      <label htmlFor={inputId} className="text-xs font-semibold text-foreground">
         {label}
       </label>
 
@@ -64,7 +64,7 @@ export function ChipsInput({
         {items.map((item) => (
           <span
             key={item}
-            className="inline-flex items-center gap-1 rounded-full bg-brand-tint px-2.5 py-1 font-nunito text-xs font-medium text-brand"
+            className="inline-flex items-center gap-1 rounded-full bg-brand-tint px-2.5 py-1 text-xs font-medium text-brand"
           >
             {item}
             <button
@@ -89,7 +89,7 @@ export function ChipsInput({
           onKeyDown={handleKeyDown}
           // Losing focus with something half-typed should keep it, not bin it.
           onBlur={() => add(draft)}
-          className="font-nunito min-w-24 flex-1 bg-transparent px-1.5 py-1 text-sm text-foreground outline-none placeholder:text-muted/70"
+          className="min-w-24 flex-1 bg-transparent px-1.5 py-1 text-sm text-foreground outline-none placeholder:text-muted/70"
         />
       </div>
 

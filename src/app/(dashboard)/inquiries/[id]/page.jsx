@@ -48,7 +48,7 @@ export default async function InquiryDetailPage({ params }) {
       <div className="px-6 py-6 sm:px-8">
         <Link
           href="/inquiries"
-          className="font-nunito text-sm text-muted underline-offset-2 hover:underline"
+          className="text-sm text-muted underline-offset-2 hover:underline"
         >
           ← All enquiries
         </Link>
@@ -97,7 +97,7 @@ export default async function InquiryDetailPage({ params }) {
                 target" rather than "not asked". */}
             {hasAddress ? (
               <Panel title="Delivery address">
-                <p className="font-nunito text-sm leading-relaxed text-foreground">
+                <p className="text-sm leading-relaxed text-foreground">
                   {inquiry.address.line1}
                   <br />
                   {inquiry.address.city}, {inquiry.address.state}
@@ -109,7 +109,7 @@ export default async function InquiryDetailPage({ params }) {
 
             {inquiry.message ? (
               <Panel title="Their message">
-                <p className="whitespace-pre-line font-nunito text-sm leading-relaxed text-foreground">
+                <p className="whitespace-pre-line text-sm leading-relaxed text-foreground">
                   {inquiry.message}
                 </p>
               </Panel>
@@ -117,7 +117,7 @@ export default async function InquiryDetailPage({ params }) {
 
             {inquiry.items.length > 0 ? (
               <section className="overflow-hidden rounded-xl border border-border">
-                <h2 className="border-b border-border bg-surface px-4 py-3 font-nunito text-xs font-semibold uppercase tracking-wide text-muted">
+                <h2 className="border-b border-border bg-surface px-4 py-3 text-xs font-semibold uppercase tracking-wide text-muted">
                   {madeToOrder
                     ? `${inquiry.items.length === 1 ? "Piece" : "Pieces"} requested (${inquiry.itemCount} units)`
                     : `Products they picked (${inquiry.itemCount})`}
@@ -129,7 +129,7 @@ export default async function InquiryDetailPage({ params }) {
                   ))}
                 </ul>
 
-                <dl className="flex flex-col gap-1.5 border-t border-border px-4 py-3 font-nunito text-sm">
+                <dl className="flex flex-col gap-1.5 border-t border-border px-4 py-3 text-sm">
                   {inquiry.packaging?.name ? (
                     <Line
                       label={`Packaging — ${inquiry.packaging.name}`}
@@ -160,12 +160,12 @@ export default async function InquiryDetailPage({ params }) {
                   the one mistake this screen must not invite.
                 */}
                 <div className="flex items-end justify-between gap-3 border-t border-border bg-surface px-4 py-3">
-                  <p className="font-nunito text-sm font-semibold text-muted">
+                  <p className="text-sm font-semibold text-muted">
                     {madeToOrder
                       ? "Indicative value at catalogue price"
                       : "Indicative value of the selection"}
                   </p>
-                  <p className="shrink-0 text-lg font-semibold text-brand">
+                  <p className="shrink-0 text-lg font-semibold tracking-tight text-brand-text">
                     {formatPrice(inquiry.amounts?.total ?? inquiry.budget)}
                   </p>
                 </div>
@@ -221,7 +221,7 @@ function InquiryItemRow({ item }) {
 
       <div className="min-w-0 flex-1">
         <p className="truncate text-foreground">{item.title}</p>
-        <p className="font-nunito text-xs text-muted">
+        <p className="text-xs text-muted">
           {formatPrice(item.price)} × {item.quantity}
         </p>
       </div>
@@ -262,7 +262,7 @@ function addDays(value, days) {
 function Panel({ title, children }) {
   return (
     <section className="rounded-xl border border-border p-4 sm:p-5">
-      <h2 className="mb-3 font-nunito text-xs font-semibold uppercase tracking-wide text-muted">
+      <h2 className="mb-3 text-xs font-semibold uppercase tracking-wide text-muted">
         {title}
       </h2>
       {children}
@@ -272,7 +272,7 @@ function Panel({ title, children }) {
 
 function Row({ label, value }) {
   return (
-    <div className="flex justify-between gap-3 py-1 font-nunito text-sm">
+    <div className="flex justify-between gap-3 py-1 text-sm">
       <span className="text-muted">{label}</span>
       <span className="max-w-[60%] text-right text-foreground">{value}</span>
     </div>

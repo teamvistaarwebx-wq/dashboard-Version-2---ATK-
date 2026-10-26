@@ -1,5 +1,5 @@
 /**
- * The white panel every section sits in: 12px radius, 1px border, a hairline
+ * The white panel every section sits in: 16px radius, 1px border, a hairline
  * shadow. No coloured backgrounds, no gradients.
  *
  * `title` / `subtitle` / `action` are optional so the same component covers
@@ -12,13 +12,13 @@ export function Card({ title, subtitle, action, className = "", children, as: Ta
 
   return (
     <Tag
-      className={`min-w-0 overflow-hidden rounded-xl border border-border bg-surface shadow-card ${className}`}
+      className={`min-w-0 overflow-hidden rounded-2xl border border-border bg-surface shadow-card ${className}`}
       {...props}
     >
       {hasHeader ? (
         <div className="flex items-start justify-between gap-3 px-4 pt-4">
           <div className="min-w-0">
-            {title ? <h2 className="text-sm font-semibold text-foreground">{title}</h2> : null}
+            {title ? <h2 className="text-[15px] font-semibold tracking-tight text-foreground">{title}</h2> : null}
             {subtitle ? <p className="mt-0.5 text-13 text-muted">{subtitle}</p> : null}
           </div>
 

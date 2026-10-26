@@ -20,9 +20,9 @@ import { POPOVER_LIST_CLASS, popoverPosition } from "./popover-position";
  * (and only the list, not the drawer).
  */
 const BASE =
-  "font-nunito h-11 w-full rounded-lg border bg-surface px-3.5 text-sm text-foreground outline-none transition placeholder:text-muted/70 focus:ring-2 disabled:bg-background";
-const NEUTRAL = "border-border focus:border-brand/50 focus:ring-brand/10";
-const INVALID = "border-danger focus:border-danger focus:ring-danger/10";
+  "h-9 w-full rounded-[10px] border bg-surface px-3 text-sm text-foreground shadow-card outline-none transition placeholder:text-subtle focus:ring-[3px] disabled:bg-surface-muted";
+const NEUTRAL = "border-border-strong/80 hover:border-border-strong focus:border-brand focus:ring-brand/12";
+const INVALID = "border-danger focus:border-danger focus:ring-danger/12";
 
 export function SuggestField({
   id,
@@ -165,7 +165,7 @@ export function SuggestField({
     <div className={`flex flex-col gap-1.5 ${className}`}>
       <label
         htmlFor={inputId}
-        className="font-nunito text-xs font-semibold text-foreground"
+        className="text-xs font-semibold text-foreground"
       >
         {label}
         {required ? (
@@ -235,7 +235,7 @@ export function SuggestField({
       </ul>
 
       {error ? (
-        <p id={messageId} role="alert" className="font-nunito text-xs text-danger">
+        <p id={messageId} role="alert" className="text-xs text-danger">
           {error}
         </p>
       ) : hint ? (

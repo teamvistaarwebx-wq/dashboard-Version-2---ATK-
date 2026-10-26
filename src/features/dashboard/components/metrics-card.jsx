@@ -11,9 +11,10 @@ import { formatMetric } from "../lib/metric-format";
 import { MetricChart } from "./metric-chart";
 
 /**
- * One card, Shopify-home style: a row of metric tabs (value, change against
- * the comparison, sparkline), and the big line chart for whichever tab is
- * selected — current period solid maroon, comparison dashed grey.
+ * The KPI strip and the chart under it. Each tile in the strip is a tab
+ * (value, change against the comparison, sparkline); the chart card below
+ * plots whichever is selected — current period solid maroon, comparison
+ * dashed grey.
  */
 function pointLabels(bucket, granularity) {
   if (granularity === "hour") {
@@ -26,7 +27,7 @@ function pointLabels(bucket, granularity) {
   return { tick: formatKey(bucket.start), label: formatKey(bucket.start, { year: true }) };
 }
 
-export function MetricsCard({ world, from, to, comparison, metric, onMetricChange }) {
+export function MetricsCard({ world, from, to, comparison, compareLabel, metric, onMetricChange }) {
   const tabsRef = useRef(null);
   const granularity = granularityFor(from, to);
 
@@ -69,67 +70,85 @@ export function MetricsCard({ world, from, to, comparison, metric, onMetricChang
   }
 
   return (
-    <Card>
-      <div
-        ref={tabsRef}
-        role="tablist"
-        aria-label="Metrics"
-        onKeyDown={handleKeyDown}
-        className="scrollbar-subtle relative grid auto-cols-[minmax(11rem,1fr)] grid-flow-col gap-1 overflow-x-auto border-b border-border p-1.5"
-      >
-        {rows.map((row) => {
-          const active = row.id === selected.id;
-          return (
-            <button
-              key={row.id}
-              type="button"
-              role="tab"
-              data-metric={row.id}
-              aria-selected={active}
-              aria-controls="metric-chart"
-              tabIndex={active ? 0 : -1}
-              onClick={() => onMetricChange(row.id)}
-              className={`flex min-w-0 flex-col gap-1 rounded-lg px-3 py-2.5 text-left transition-colors ${
-                active ? "bg-neutral-bg" : "hover:bg-surface-muted"
-              }`}
-            >
-              <span className={`truncate text-13 ${active ? "font-medium text-foreground" : "text-muted"}`}>{row.label}</span>
-              <span className="whitespace-nowrap font-mono text-xl font-semibold tabular-nums text-foreground">
-                {formatMetric(row.kind, row.value)}
-              </span>
-              <span className="flex items-center justify-between gap-2">
-                <Change value={row.change} />
-                <Sparkline
-                  values={row.current.map((point) => point.value)}
-                  compare={row.compare?.map((point) => point.value)}
-                  width={72}
-                  height={22}
-                  className="shrink-0"
+    <>
+      <Card>
+        <div
+          ref={tabsRef}
+          role="tablist"
+          aria-label="Metrics"
+          onKeyDown={handleKeyDown}
+          className="scrollbar-subtle relative grid auto-cols-[minmax(12.5rem,1fr)] grid-flow-col divide-x divide-border overflow-x-auto"
+        >
+          {rows.map((row) => {
+            const active = row.id === selected.id;
+            return (
+              <button
+                key={row.id}
+                type="button"
+                role="tab"
+                data-metric={row.id}
+                aria-selected={active}
+                aria-controls="metric-chart"
+                tabIndex={active ? 0 : -1}
+                onClick={() => onMetricChange(row.id)}
+                className={`relative flex min-w-0 flex-col gap-2 px-5 py-4 text-left transition-colors focus-visible:-outline-offset-2 ${
+                  active ? "bg-surface-muted/70" : "hover:bg-surface-muted/50"
+                }`}
+              >
+                <span className="flex items-center justify-between gap-2">
+                  <span className={`truncate text-13 ${active ? "font-medium text-foreground" : "text-muted"}`}>{row.label}</span>
+                  <Sparkline
+                    values={row.current.map((point) => point.value)}
+                    compare={row.compare?.map((point) => point.value)}
+                    width={56}
+                    height={18}
+                    className="shrink-0"
+                  />
+                </span>
+                <span className="whitespace-nowrap text-[26px] font-semibold leading-none tracking-tight tabular-nums text-foreground">
+                  {formatMetric(row.kind, row.value)}
+                </span>
+                <span className="flex min-w-0 items-center gap-1.5 text-xs text-muted">
+                  <Change value={row.change} />
+                  {comparison ? <span className="truncate">vs {compareLabel}</span> : null}
+                </span>
+                <span
+                  aria-hidden="true"
+                  className={`absolute inset-x-0 bottom-0 h-0.5 transition-colors ${active ? "bg-brand" : "bg-transparent"}`}
                 />
-              </span>
-            </button>
-          );
-        })}
-      </div>
-
-      <div id="metric-chart" role="tabpanel" aria-label={selected.label} className="px-3 pb-3 pt-4 sm:px-4">
-        <div className="h-64 sm:h-72">
-          <MetricChart current={selected.current} compare={selected.compare} kind={selected.kind} metricLabel={selected.label} />
+              </button>
+            );
+          })}
         </div>
+      </Card>
 
-        <ul className="mt-3 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-13 text-muted">
-          <li className="flex items-center gap-2">
-            <span className="h-0.5 w-5 rounded-full bg-chart-line" aria-hidden="true" />
-            {formatKeyRange(from, to)}
-          </li>
-          {comparison ? (
-            <li className="flex items-center gap-2">
-              <span className="w-5 border-t-2 border-dashed border-chart-compare" aria-hidden="true" />
-              {formatKeyRange(comparison.from, comparison.to)}
+      <Card
+        id="metric-chart"
+        role="tabpanel"
+        aria-label={selected.label}
+        title={selected.label}
+        subtitle={comparison ? `${formatKeyRange(from, to)} compared with ${formatKeyRange(comparison.from, comparison.to)}` : formatKeyRange(from, to)}
+        action={
+          <ul className="hidden items-center gap-4 text-xs text-muted sm:flex">
+            <li className="flex items-center gap-1.5">
+              <span className="h-0.5 w-4 rounded-full bg-chart-line" aria-hidden="true" />
+              Current
             </li>
-          ) : null}
-        </ul>
-      </div>
-    </Card>
+            {comparison ? (
+              <li className="flex items-center gap-1.5">
+                <span className="w-4 border-t-2 border-dashed border-chart-compare" aria-hidden="true" />
+                Comparison
+              </li>
+            ) : null}
+          </ul>
+        }
+      >
+        <div className="px-3 pb-4 pt-4 sm:px-4">
+          <div className="h-64 sm:h-80">
+            <MetricChart current={selected.current} compare={selected.compare} kind={selected.kind} metricLabel={selected.label} />
+          </div>
+        </div>
+      </Card>
+    </>
   );
 }

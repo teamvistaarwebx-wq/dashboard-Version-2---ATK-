@@ -56,8 +56,8 @@ export function BannerRowActions({ id, name, isActive, canDelete, deleteIcon }) 
           disabled={isPending}
           className={
             isActive
-              ? "rounded-md px-2.5 py-1.5 font-nunito text-xs font-semibold text-muted transition hover:bg-background disabled:opacity-60"
-              : "rounded-md px-2.5 py-1.5 font-nunito text-xs font-semibold text-brand transition hover:bg-brand-soft disabled:opacity-60"
+              ? "rounded-md px-2.5 py-1.5 text-xs font-semibold text-muted transition hover:bg-surface-muted disabled:opacity-60"
+              : "rounded-md px-2.5 py-1.5 text-xs font-semibold text-brand transition hover:bg-brand-soft disabled:opacity-60"
           }
         >
           {isActive ? "Unpublish" : "Publish"}
@@ -79,7 +79,7 @@ export function BannerRowActions({ id, name, isActive, canDelete, deleteIcon }) 
       </div>
 
       {error ? (
-        <p role="alert" className="font-nunito text-xs text-danger">
+        <p role="alert" className="text-xs text-danger">
           {error}
         </p>
       ) : null}

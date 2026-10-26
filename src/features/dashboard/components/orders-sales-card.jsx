@@ -45,7 +45,7 @@ export async function OrdersSalesCard() {
 function Figure({ label, value }) {
   return (
     <div>
-      <dd className="font-mono text-xl font-semibold">
+      <dd className="text-2xl font-semibold tracking-tight tabular-nums">
         {value}
       </dd>
       <dt className="mt-0.5 text-xs text-muted">

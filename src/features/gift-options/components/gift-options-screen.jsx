@@ -43,7 +43,7 @@ export function GiftOptionsScreen() {
       }
     >
       <Card>
-        <div className="border-b border-border p-2">
+        <div className="border-b border-border px-4">
           <Tabs label="Gift option type" tabs={tabs} value={type} controls="gift-options-table" onChange={setType} />
         </div>
         <div id="gift-options-table">

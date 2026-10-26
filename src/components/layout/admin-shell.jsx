@@ -1,16 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { X } from "lucide-react";
 import { Drawer } from "@/components/ui/drawer";
 import { ToastProvider } from "@/components/ui/toast";
 import { AdminNav } from "./admin-nav";
 import { TopBar } from "./top-bar";
 
 /**
- * Frame for every signed-in screen: top bar across, nav down the left, the
- * page scrolling on its own to the right. Below 1024px the nav moves into an
- * off-canvas drawer opened from the top bar.
+ * Frame for every signed-in screen: the sidebar sits on the canvas, and the
+ * page floats beside it in a rounded panel with its own header and its own
+ * scroll. Below 1024px the panel goes edge to edge and the sidebar moves into
+ * an off-canvas drawer opened from the header.
  */
 export function AdminShell({ session, storeName, signOutAction, children }) {
   const [navOpen, setNavOpen] = useState(false);
@@ -24,41 +24,31 @@ export function AdminShell({ session, storeName, signOutAction, children }) {
         Skip to content
       </a>
 
-      <div className="flex h-dvh flex-col">
-        <TopBar
-          session={session}
-          storeName={storeName}
-          signOutAction={signOutAction}
-          onOpenNav={() => setNavOpen(true)}
-        />
+      <div className="flex h-dvh bg-canvas">
+        <aside className="hidden w-64 shrink-0 lg:block">
+          <AdminNav session={session} storeName={storeName} signOutAction={signOutAction} />
+        </aside>
 
-        <div className="flex min-h-0 flex-1">
-          <aside className="hidden w-60 shrink-0 border-r border-border lg:block">
-            <AdminNav />
-          </aside>
+        {navOpen ? (
+          <Drawer side="left" title="Navigation" hideHeader onClose={() => setNavOpen(false)} className="lg:hidden">
+            <AdminNav
+              session={session}
+              storeName={storeName}
+              signOutAction={signOutAction}
+              onNavigate={() => setNavOpen(false)}
+              onClose={() => setNavOpen(false)}
+            />
+          </Drawer>
+        ) : null}
 
-          {navOpen ? (
-            <Drawer side="left" title="Navigation" hideHeader onClose={() => setNavOpen(false)} className="lg:hidden">
-              <div className="flex h-14 shrink-0 items-center justify-between border-b border-border bg-background px-4">
-                <span className="text-sm font-semibold">{storeName}</span>
-                <button
-                  type="button"
-                  onClick={() => setNavOpen(false)}
-                  aria-label="Close navigation"
-                  className="rounded-lg p-1.5 text-muted transition hover:bg-neutral-bg hover:text-foreground"
-                >
-                  <X className="size-5" aria-hidden="true" />
-                </button>
-              </div>
-              <div className="min-h-0 flex-1">
-                <AdminNav onNavigate={() => setNavOpen(false)} />
-              </div>
-            </Drawer>
-          ) : null}
+        <div className="flex min-w-0 flex-1 flex-col lg:py-2 lg:pr-2">
+          <div className="flex min-h-0 flex-1 flex-col overflow-hidden bg-background lg:rounded-2xl lg:shadow-panel">
+            <TopBar onOpenNav={() => setNavOpen(true)} />
 
-          <main id="main" tabIndex={-1} className="min-w-0 flex-1 overflow-y-auto focus:outline-none">
-            {children}
-          </main>
+            <main id="main" tabIndex={-1} className="min-w-0 flex-1 overflow-y-auto focus:outline-none">
+              {children}
+            </main>
+          </div>
         </div>
       </div>
     </ToastProvider>

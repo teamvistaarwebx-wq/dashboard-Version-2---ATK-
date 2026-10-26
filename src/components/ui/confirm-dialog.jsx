@@ -44,18 +44,18 @@ export function ConfirmDialog({
       ref={dialogRef}
       aria-labelledby={titleId}
       onCancel={handleEscape}
-      className="m-auto w-[min(28rem,calc(100vw-2rem))] rounded-xl border border-border bg-surface p-0 text-foreground shadow-xl backdrop:bg-black/40"
+      className="m-auto w-[min(28rem,calc(100vw-2rem))] rounded-2xl border border-border bg-surface p-0 text-foreground shadow-popover backdrop:bg-black/40"
     >
       <div className="p-6">
         <h2
           id={titleId}
-          className="font-newsreader text-lg font-semibold text-brand"
+          className="text-lg font-semibold tracking-tight text-foreground"
         >
           {title}
         </h2>
 
         {description ? (
-          <p className="mt-2 font-nunito text-sm leading-relaxed text-muted">
+          <p className="mt-2 text-sm leading-relaxed text-muted">
             {description}
           </p>
         ) : null}
@@ -64,7 +64,7 @@ export function ConfirmDialog({
             after the dialog is already open. */}
         <p
           aria-live="polite"
-          className="mt-3 min-h-4 font-nunito text-xs text-danger"
+          className="mt-3 min-h-4 text-xs text-danger"
         >
           {error}
         </p>
@@ -77,7 +77,7 @@ export function ConfirmDialog({
             autoFocus
             onClick={onCancel}
             disabled={pending}
-            className="rounded-lg border border-border bg-surface px-4 py-2 font-nunito text-sm font-semibold text-foreground transition hover:bg-background disabled:cursor-not-allowed disabled:opacity-60"
+            className="rounded-lg border border-border bg-surface px-4 py-2 text-sm font-semibold text-foreground transition hover:bg-surface-muted disabled:cursor-not-allowed disabled:opacity-60"
           >
             {cancelLabel}
           </button>
@@ -86,7 +86,7 @@ export function ConfirmDialog({
             type="button"
             onClick={onConfirm}
             disabled={pending}
-            className="rounded-lg bg-danger px-4 py-2 font-nunito text-sm font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+            className="rounded-lg bg-danger px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {pending ? "Working…" : confirmLabel}
           </button>

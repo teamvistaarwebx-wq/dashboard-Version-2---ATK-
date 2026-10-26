@@ -30,7 +30,7 @@ export function DropZone({ label, hint, accept, multiple = false, onFiles, compa
         setOver(false);
         take(event.dataTransfer.files);
       }}
-      className={`flex flex-col items-center justify-center gap-2 rounded-xl border border-dashed text-center transition-colors ${
+      className={`flex flex-col items-center justify-center gap-2 rounded-2xl border border-dashed text-center transition-colors ${
         compact ? "px-4 py-5" : "px-4 py-8"
       } ${over ? "border-brand bg-brand-tint/50" : "border-border-strong bg-surface-muted"}`}
     >

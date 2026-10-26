@@ -5,7 +5,7 @@
 function Block({ className = "" }) {
   return (
     <div
-      className={`rounded-xl border border-border bg-surface ${className}`}
+      className={`rounded-2xl border border-border bg-surface ${className}`}
       aria-hidden="true"
     />
   );

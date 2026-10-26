@@ -112,7 +112,7 @@ export default async function ProductsPage({ searchParams }) {
             page,
             drawer: { new: "1" },
           })}
-          className="inline-flex h-11 items-center justify-center rounded-lg bg-brand px-4 text-sm font-semibold text-white transition hover:bg-brand/90"
+          className="inline-flex h-9 items-center justify-center rounded-[10px] bg-brand px-4 text-13 font-medium text-white shadow-card transition hover:bg-brand-hover"
         >
           + Add Product
         </Link>

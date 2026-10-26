@@ -34,7 +34,7 @@ const SOURCE_OPTIONS = [
 
 function FilterSelect({ id, name, label, options, defaultValue }) {
   return (
-    <div className="flex flex-col gap-1 font-nunito text-xs text-muted">
+    <div className="flex flex-col gap-1 text-xs text-muted">
       <label id={`${id}-label`} htmlFor={id}>
         {label}
       </label>
@@ -99,14 +99,14 @@ export default async function InquiriesPage({ searchParams }) {
 
       <div className="px-6 py-6 sm:px-8">
         <form className="flex flex-wrap items-end gap-3" action="/inquiries">
-          <label className="flex flex-col gap-1 font-nunito text-xs text-muted">
+          <label className="flex flex-col gap-1 text-xs text-muted">
             Search
             <input
               type="search"
               name="q"
               defaultValue={q}
               placeholder="Reference, company, contact, phone or email"
-              className="w-80 max-w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground outline-none transition focus:border-brand"
+              className="w-80 max-w-full rounded-md border border-border bg-surface-muted px-3 py-2 text-sm text-foreground outline-none transition focus:border-brand"
             />
           </label>
 
@@ -129,7 +129,7 @@ export default async function InquiriesPage({ searchParams }) {
 
           <button
             type="submit"
-            className="rounded-md bg-brand px-4 py-2 font-nunito text-sm text-white transition hover:opacity-90"
+            className="rounded-md bg-brand px-4 py-2 text-sm text-white transition hover:opacity-90"
           >
             Filter
           </button>

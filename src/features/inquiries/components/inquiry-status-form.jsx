@@ -29,7 +29,7 @@ export function InquiryStatusForm({ id, status, internalNotes }) {
         <label
           id="inquiry-status-label"
           htmlFor="inquiry-status"
-          className="font-nunito text-xs font-semibold uppercase tracking-wide text-muted"
+          className="text-xs font-semibold uppercase tracking-wide text-muted"
         >
           Status
         </label>
@@ -45,7 +45,7 @@ export function InquiryStatusForm({ id, status, internalNotes }) {
       <div className="flex flex-col gap-1.5">
         <label
           htmlFor="inquiry-notes"
-          className="font-nunito text-xs font-semibold uppercase tracking-wide text-muted"
+          className="text-xs font-semibold uppercase tracking-wide text-muted"
         >
           Internal notes
         </label>
@@ -55,9 +55,9 @@ export function InquiryStatusForm({ id, status, internalNotes }) {
           rows={5}
           defaultValue={internalNotes}
           placeholder="What was agreed on the call, who is chasing it, what the quote was."
-          className="resize-y rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground outline-none transition focus:border-brand"
+          className="resize-y rounded-md border border-border bg-surface-muted px-3 py-2 text-sm text-foreground outline-none transition focus:border-brand"
         />
-        <p className="font-nunito text-xs text-muted">
+        <p className="text-xs text-muted">
           Only visible to the team — never shown to the enquirer.
         </p>
       </div>
@@ -65,14 +65,14 @@ export function InquiryStatusForm({ id, status, internalNotes }) {
       <button
         type="submit"
         disabled={pending}
-        className="rounded-md bg-brand px-4 py-2.5 font-nunito text-sm text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+        className="rounded-md bg-brand px-4 py-2.5 text-sm text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
       >
         {pending ? "Saving…" : "Save"}
       </button>
 
       {/* aria-live so the outcome reaches a screen reader — the button label
           returning to "Save" is the only other signal anything happened. */}
-      <p aria-live="polite" className="font-nunito text-xs">
+      <p aria-live="polite" className="text-xs">
         {state?.error ? (
           <span className="text-danger">{state.error}</span>
         ) : null}

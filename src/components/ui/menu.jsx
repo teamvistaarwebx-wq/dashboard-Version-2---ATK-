@@ -12,7 +12,8 @@ import { Check } from "lucide-react";
  * `items`: { label, href } | { label, onSelect } | { label, action } (a
  * server action, posted from a form) | { separator: true }. `header` renders
  * above the items, unfocusable. An item with `checked` (true or false) is a
- * radio option — the theme switch uses that.
+ * radio option — the theme switch uses that. `tone: "critical"` paints a
+ * destructive item (Log out) red.
  */
 const ITEM_SELECTOR = '[role="menuitem"], [role="menuitemradio"]';
 export function Menu({
@@ -23,6 +24,8 @@ export function Menu({
   header,
   align = "end",
   placement = "bottom",
+  menuClassName = "",
+  rootClassName = "",
 }) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef(null);
@@ -79,11 +82,18 @@ export function Menu({
     }
   }
 
-  const itemClass =
-    "flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-left text-sm text-foreground outline-none transition-colors hover:bg-neutral-bg focus-visible:bg-neutral-bg focus-visible:outline-none [&_svg]:size-4 [&_svg]:text-muted";
+  const baseItemClass =
+    "flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-left text-13 outline-none transition-colors focus-visible:outline-none [&_svg]:size-4";
+  const toneClass = {
+    default:
+      "text-foreground hover:bg-neutral-bg focus-visible:bg-neutral-bg [&_svg]:text-muted",
+    critical:
+      "text-critical hover:bg-critical-bg focus-visible:bg-critical-bg [&_svg]:text-critical",
+  };
+  const classFor = (item) => `${baseItemClass} ${toneClass[item.tone] ?? toneClass.default}`;
 
   return (
-    <div ref={rootRef} className="relative">
+    <div ref={rootRef} className={`relative ${rootClassName}`}>
       <button
         ref={buttonRef}
         type="button"
@@ -104,15 +114,15 @@ export function Menu({
           role="menu"
           aria-label={label}
           onKeyDown={handleMenuKeyDown}
-          className={`absolute z-40 min-w-56 rounded-xl bg-surface p-1 shadow-popover ${
+          className={`absolute z-40 min-w-56 rounded-2xl border border-border bg-surface p-1.5 shadow-popover ${
             align === "end" ? "right-0" : "left-0"
-          } ${placement === "top" ? "bottom-full mb-2" : "top-full mt-2"}`}
+          } ${placement === "top" ? "bottom-full mb-2" : "top-full mt-2"} ${menuClassName}`}
         >
-          {header ? <div className="px-2.5 pb-2 pt-1.5">{header}</div> : null}
+          {header ? <div className="px-2 pb-2 pt-1.5">{header}</div> : null}
 
           {items.map((item, index) => {
             if (item.separator) {
-              return <div key={`sep-${index}`} role="separator" className="my-1 h-px bg-border" />;
+              return <div key={`sep-${index}`} role="separator" className="-mx-1.5 my-1.5 h-px bg-border" />;
             }
 
             const content = (
@@ -126,7 +136,7 @@ export function Menu({
 
             if (item.href) {
               return (
-                <Link key={item.label} href={item.href} role="menuitem" tabIndex={-1} className={itemClass} onClick={() => close({ refocus: false })}>
+                <Link key={item.label} href={item.href} role="menuitem" tabIndex={-1} className={classFor(item)} onClick={() => close({ refocus: false })}>
                   {content}
                 </Link>
               );
@@ -135,7 +145,7 @@ export function Menu({
             if (item.action) {
               return (
                 <form key={item.label} action={item.action}>
-                  <button type="submit" role="menuitem" tabIndex={-1} className={itemClass}>
+                  <button type="submit" role="menuitem" tabIndex={-1} className={classFor(item)}>
                     {content}
                   </button>
                 </form>
@@ -150,7 +160,7 @@ export function Menu({
                 aria-checked={item.checked}
                 tabIndex={-1}
                 disabled={item.disabled}
-                className={`${itemClass} disabled:cursor-not-allowed disabled:opacity-50`}
+                className={`${classFor(item)} disabled:cursor-not-allowed disabled:opacity-50`}
                 onClick={() => {
                   close();
                   item.onSelect?.();

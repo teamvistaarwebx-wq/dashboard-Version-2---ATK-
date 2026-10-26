@@ -84,7 +84,7 @@ export function InventoryFilters({ q, view, searchIcon, children }) {
             onChange={handleSearchChange}
             placeholder="Search SKU or product…"
             aria-label="Search stock"
-            className="w-72 max-w-full rounded-full border border-border bg-surface py-2.5 pl-10 pr-4 font-nunito text-sm text-foreground outline-none transition placeholder:text-muted focus:border-brand"
+            className="w-72 max-w-full rounded-full border border-border bg-surface py-2.5 pl-10 pr-4 text-sm text-foreground outline-none transition placeholder:text-muted focus:border-brand"
           />
         </div>
 

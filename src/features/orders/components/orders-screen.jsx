@@ -162,12 +162,12 @@ export function OrdersScreen() {
           {strip.map((item, index) => (
             <div
               key={item.label}
-              className={`flex flex-col gap-0.5 px-4 py-3 ${index % 2 ? "" : "border-r"} border-border sm:border-r sm:last:border-r-0 ${
+              className={`flex flex-col gap-1 px-5 py-4 ${index % 2 ? "" : "border-r"} border-border sm:border-r sm:last:border-r-0 ${
                 index < 2 ? "border-b sm:border-b-0" : ""
               }`}
             >
               <dt className="text-13 text-muted">{item.label}</dt>
-              <dd className="font-mono text-xl font-semibold tabular-nums">{item.value}</dd>
+              <dd className="text-2xl font-semibold tracking-tight tabular-nums">{item.value}</dd>
               <dd className="flex items-center gap-1.5 text-xs text-muted">
                 <Change value={item.change} />
                 <span className="truncate">vs {formatKeyRange(previousRange.from, previousRange.to)}</span>
@@ -178,7 +178,7 @@ export function OrdersScreen() {
       </Card>
 
       <Card>
-        <div className="flex flex-col gap-2 border-b border-border p-2 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex flex-col gap-2 border-b border-border px-4 pb-3 lg:flex-row lg:items-center lg:justify-between lg:gap-4 lg:pb-0">
           <Tabs
             label="Order status"
             tabs={tabs}

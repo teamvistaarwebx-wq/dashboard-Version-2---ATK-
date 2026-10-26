@@ -1,6 +1,7 @@
 /**
- * Status pills. The three semantic tones are for status only; `neutral` for
- * states that need no attention; `gold` sparingly, for "New" / "Imported".
+ * Status pills: fully rounded, tinted fill with a hairline ring in the same
+ * hue. The three semantic tones are for status only; `neutral` for states
+ * that need no attention; `gold` sparingly, for "New" / "Imported".
  */
 const TONES = {
   success: "bg-success-bg text-success",
@@ -14,7 +15,7 @@ const TONES = {
 export function Badge({ tone = "neutral", dot = false, className = "", children }) {
   return (
     <span
-      className={`inline-flex h-5 shrink-0 items-center gap-1 whitespace-nowrap rounded-md px-1.5 text-xs font-medium ${
+      className={`inline-flex h-[22px] shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full px-2 text-xs font-medium ring-1 ring-inset ring-current/15 ${
         TONES[tone] ?? TONES.neutral
       } ${className}`}
     >

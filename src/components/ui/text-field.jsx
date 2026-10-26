@@ -8,9 +8,9 @@
  * box ("₹", "days"); `counter` shows "42 / 70" under it.
  */
 export const INPUT_BASE =
-  "h-9 w-full min-w-0 rounded-lg border bg-surface px-3 text-sm text-foreground outline-none transition placeholder:text-subtle focus-visible:outline-none focus:ring-2 disabled:cursor-not-allowed disabled:bg-surface-muted disabled:text-muted";
-export const INPUT_NEUTRAL = "border-border-strong focus:border-brand focus:ring-brand/15";
-export const INPUT_INVALID = "border-critical focus:border-critical focus:ring-critical/15";
+  "h-9 w-full min-w-0 rounded-[10px] border bg-surface px-3 text-sm text-foreground shadow-card outline-none transition placeholder:text-subtle focus-visible:outline-none focus:ring-[3px] disabled:cursor-not-allowed disabled:bg-surface-muted disabled:text-muted";
+export const INPUT_NEUTRAL = "border-border-strong/80 hover:border-border-strong focus:border-brand focus:ring-brand/12";
+export const INPUT_INVALID = "border-critical focus:border-critical focus:ring-critical/12";
 
 export function FieldLabel({ htmlFor, required, children, className = "" }) {
   return (

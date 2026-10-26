@@ -79,7 +79,7 @@ export function DateRangePicker({ from, to, today, min, presetIds, onApply, labe
         aria-controls={open ? panelId : undefined}
         aria-label={`${label}: ${rangeButtonLabel(from, to, today, presetIds)}`}
         onClick={() => setOpen((value) => !value)}
-        className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-border bg-surface px-2.5 text-13 font-medium text-foreground shadow-card transition-colors hover:bg-surface-muted"
+        className="inline-flex h-9 items-center gap-2 rounded-[10px] border border-border bg-surface px-3 text-13 font-medium text-foreground shadow-card transition-colors hover:border-border-strong hover:bg-surface-muted"
       >
         <CalendarDays className="size-4 text-muted" aria-hidden="true" />
         {rangeButtonLabel(from, to, today, presetIds)}
@@ -104,7 +104,7 @@ export function DateRangePicker({ from, to, today, min, presetIds, onApply, labe
               close();
             }
           }}
-          className={`absolute top-full z-40 mt-2 max-w-[calc(100vw-2rem)] overflow-hidden rounded-xl bg-surface shadow-popover ${
+          className={`absolute top-full z-40 mt-2 max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-border bg-surface shadow-popover ${
             align === "end" ? "right-0" : "left-0"
           }`}
         >

@@ -25,7 +25,7 @@ export async function ProductDrawerBody({ editId, categoriesPromise }) {
   if (!editing) {
     return (
       <div className="flex min-h-0 flex-1 items-center justify-center px-6 py-10">
-        <p className="text-center font-nunito text-sm text-muted">
+        <p className="text-center text-sm text-muted">
           This product has been deleted.
         </p>
       </div>

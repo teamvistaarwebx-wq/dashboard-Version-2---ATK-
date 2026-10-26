@@ -132,7 +132,7 @@ export function ProductForm({
             once set — it is the product's public web address. Shown so the
             SKU can be read out or copied. */}
         {product.id ? (
-          <p className="-mt-3 font-nunito text-xs text-muted">
+          <p className="-mt-3 text-xs text-muted">
             SKU <span className="font-semibold text-foreground">{product.sku}</span>
             {" · "}
             URL{" "}
@@ -142,7 +142,7 @@ export function ProductForm({
             </span>
           </p>
         ) : (
-          <p className="-mt-3 font-nunito text-xs text-muted">
+          <p className="-mt-3 text-xs text-muted">
             A SKU and web address are created automatically when you save.
           </p>
         )}
@@ -305,7 +305,7 @@ export function ProductForm({
 
         <Section title={madeToOrder ? "Shipping" : "Stock & shipping"}>
           {madeToOrder ? (
-            <p className="font-nunito text-xs leading-relaxed text-muted">
+            <p className="text-xs leading-relaxed text-muted">
               Made to order — woven once a customer commits to a quantity, so
               no stock is counted and it never appears on the Inventory screen.
             </p>
@@ -327,7 +327,7 @@ export function ProductForm({
                   belong on the Inventory screen, where they are logged with a
                   reason. */}
               {product.id ? (
-                <p className="font-nunito text-xs leading-relaxed text-muted">
+                <p className="text-xs leading-relaxed text-muted">
                   Stock: <strong className="text-foreground">{product.onHand ?? 0}</strong>{" "}
                   on hand.{" "}
                   {/* Straight to this SKU's adjust form, rather than to a
@@ -470,7 +470,7 @@ export function ProductForm({
         {errors._form || hasFieldError ? (
           <p
             role="alert"
-            className="mb-3 rounded-lg bg-danger/8 px-3 py-2.5 font-nunito text-sm text-danger"
+            className="mb-3 rounded-lg bg-danger/8 px-3 py-2.5 text-sm text-danger"
           >
             {errors._form ?? "Check the highlighted fields above."}
           </p>
@@ -481,7 +481,7 @@ export function ProductForm({
             type="button"
             onClick={close}
             disabled={isPending}
-            className="inline-flex h-11 items-center justify-center rounded-lg border border-border bg-surface px-5 font-nunito text-sm font-semibold text-foreground transition hover:bg-background disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex h-9 items-center justify-center rounded-[10px] border border-border bg-surface px-5 text-13 font-medium text-foreground shadow-card transition hover:bg-surface-muted disabled:cursor-not-allowed disabled:opacity-60"
           >
             Cancel
           </button>
@@ -489,7 +489,7 @@ export function ProductForm({
           <button
             type="submit"
             disabled={isPending}
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-brand px-5 font-nunito text-sm font-semibold text-white transition hover:bg-brand/90 disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex h-9 items-center justify-center gap-2 rounded-[10px] bg-brand px-5 text-13 font-medium text-white shadow-card transition hover:bg-brand-hover disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isPending ? (
               <>
@@ -511,7 +511,7 @@ export function ProductForm({
 function Section({ title, children }) {
   return (
     <details className="rounded-lg border border-border">
-      <summary className="cursor-pointer px-4 py-3 font-nunito text-xs font-semibold uppercase tracking-wide text-muted transition hover:text-brand">
+      <summary className="cursor-pointer px-4 py-3 text-xs font-semibold uppercase tracking-wide text-muted transition hover:text-brand">
         {title}
       </summary>
       <div className="flex flex-col gap-4 border-t border-border px-4 py-4">
@@ -528,7 +528,7 @@ function Section({ title, children }) {
  */
 function Checkbox({ name, label, checked, onChange, defaultChecked, disabled }) {
   return (
-    <label className="flex items-center gap-2.5 font-nunito text-sm text-foreground">
+    <label className="flex items-center gap-2.5 text-sm text-foreground">
       <input
         type="checkbox"
         name={name}

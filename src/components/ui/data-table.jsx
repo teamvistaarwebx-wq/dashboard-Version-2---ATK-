@@ -11,9 +11,9 @@ import { formatNumber } from "@/lib/format";
  */
 
 export const TABLE = "w-full text-left text-13";
-export const THEAD = "border-b border-border bg-surface-muted text-xs text-muted";
-export const TH = "whitespace-nowrap px-3 py-2 font-medium first:pl-4 last:pr-4";
-export const TD = "px-3 py-2.5 align-middle first:pl-4 last:pr-4";
+export const THEAD = "border-b border-border bg-surface-muted/70 text-[11px] uppercase tracking-wider text-muted";
+export const TH = "whitespace-nowrap px-3 py-2.5 font-medium first:pl-4 last:pr-4";
+export const TD = "px-3 py-3 align-middle first:pl-4 last:pr-4";
 export const TBODY = "divide-y divide-border";
 export const ROW_LINK = "cursor-pointer transition-colors hover:bg-surface-muted";
 
@@ -56,14 +56,14 @@ export function SearchInput({ label, placeholder, defaultValue = "", onSearch, c
       <label htmlFor={id} className="sr-only">
         {label}
       </label>
-      <Search className="pointer-events-none absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted" aria-hidden="true" />
+      <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-subtle" aria-hidden="true" />
       <input
         id={id}
         type="search"
         value={value}
         placeholder={placeholder}
         onChange={(event) => update(event.target.value)}
-        className="h-8 w-full rounded-lg border border-border-strong bg-surface pl-8 pr-3 text-13 text-foreground outline-none placeholder:text-subtle focus-visible:outline-none focus:border-brand focus:ring-2 focus:ring-brand/15"
+        className="h-9 w-full rounded-[10px] border border-border bg-surface pl-9 pr-3 text-13 text-foreground shadow-card outline-none transition placeholder:text-subtle hover:border-border-strong focus-visible:outline-none focus:border-brand focus:ring-[3px] focus:ring-brand/12"
       />
     </div>
   );
@@ -76,8 +76,8 @@ export function ClientPagination({ page, pageSize, total, onPage }) {
   const end = Math.min(total, page * pageSize);
 
   return (
-    <nav aria-label="Pagination" className="flex items-center justify-between gap-3 border-t border-border px-4 py-2.5 text-13 text-muted">
-      <span className="font-mono tabular-nums">
+    <nav aria-label="Pagination" className="flex items-center justify-between gap-3 border-t border-border px-4 py-3 text-13 text-muted">
+      <span className="tabular-nums">
         {formatNumber(start)}–{formatNumber(end)} of {formatNumber(total)}
       </span>
       <span className="flex items-center gap-1">
@@ -86,7 +86,7 @@ export function ClientPagination({ page, pageSize, total, onPage }) {
           aria-label="Previous page"
           disabled={page <= 1}
           onClick={() => onPage(page - 1)}
-          className="rounded-lg border border-border bg-surface p-1.5 text-foreground shadow-card transition hover:bg-surface-muted disabled:opacity-40"
+          className="rounded-lg border border-border bg-surface p-1.5 text-foreground shadow-card transition hover:border-border-strong hover:bg-surface-muted disabled:opacity-40"
         >
           <ChevronLeft className="size-4" aria-hidden="true" />
         </button>
@@ -95,7 +95,7 @@ export function ClientPagination({ page, pageSize, total, onPage }) {
           aria-label="Next page"
           disabled={page >= pages}
           onClick={() => onPage(page + 1)}
-          className="rounded-lg border border-border bg-surface p-1.5 text-foreground shadow-card transition hover:bg-surface-muted disabled:opacity-40"
+          className="rounded-lg border border-border bg-surface p-1.5 text-foreground shadow-card transition hover:border-border-strong hover:bg-surface-muted disabled:opacity-40"
         >
           <ChevronRight className="size-4" aria-hidden="true" />
         </button>

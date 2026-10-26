@@ -35,7 +35,7 @@ export async function InquiriesSection({ inquiriesPromise, q, status, source }) 
     <>
       <div className="relative mt-6 overflow-x-auto rounded-xl border border-border">
         <table className="w-full min-w-[52rem] text-left text-sm">
-          <thead className="bg-surface font-nunito text-xs uppercase tracking-wide text-muted">
+          <thead className="bg-surface text-xs uppercase tracking-wide text-muted">
             <tr>
               <th className="px-4 py-3 font-semibold">Enquiry</th>
               <th className="px-4 py-3 font-semibold">Company</th>
@@ -58,12 +58,12 @@ export async function InquiriesSection({ inquiriesPromise, q, status, source }) 
                     {inquiry.inquiryNumber ?? "View"}
                   </Link>
                   {inquiry.source === INQUIRY_SOURCE.MADE_TO_ORDER ? (
-                    <span className="mt-1 block w-fit rounded-full border border-brand/30 bg-brand-tint px-2 py-0.5 font-nunito text-[0.625rem] font-semibold uppercase tracking-wide text-brand">
+                    <span className="mt-1 block w-fit rounded-full border border-brand/30 bg-brand-tint px-2 py-0.5 text-[0.625rem] font-semibold uppercase tracking-wide text-brand">
                       {INQUIRY_SOURCE_LABEL[inquiry.source]}
                     </span>
                   ) : null}
                   {inquiry.occasion ? (
-                    <span className="block font-nunito text-xs text-muted">
+                    <span className="block text-xs text-muted">
                       {inquiry.occasion}
                     </span>
                   ) : null}
@@ -76,7 +76,7 @@ export async function InquiriesSection({ inquiriesPromise, q, status, source }) 
                   <span className="block text-foreground">
                     {inquiry.contactName}
                   </span>
-                  <span className="block font-nunito text-xs text-muted">
+                  <span className="block text-xs text-muted">
                     {inquiry.phone || inquiry.email || "—"}
                   </span>
                 </td>
@@ -91,7 +91,7 @@ export async function InquiriesSection({ inquiriesPromise, q, status, source }) 
                 <td className="px-4 py-3">
                   <InquiryStatusPill status={inquiry.status} />
                 </td>
-                <td className="px-4 py-3 font-nunito text-muted">
+                <td className="px-4 py-3 text-muted">
                   {formatDateTime(inquiry.createdAt)}
                 </td>
               </tr>
@@ -101,7 +101,7 @@ export async function InquiriesSection({ inquiriesPromise, q, status, source }) 
       </div>
 
       {totalPages > 1 ? (
-        <p className="mt-4 font-nunito text-sm text-muted">
+        <p className="mt-4 text-sm text-muted">
           Page {page} of {totalPages}
         </p>
       ) : null}
@@ -117,7 +117,7 @@ export async function InquiriesCount({ inquiriesPromise }) {
   const { total } = await inquiriesPromise;
 
   return (
-    <p className="font-nunito text-sm text-muted">
+    <p className="text-sm text-muted">
       {total} {total === 1 ? "enquiry" : "enquiries"}
     </p>
   );

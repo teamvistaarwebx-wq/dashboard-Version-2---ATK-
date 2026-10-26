@@ -13,7 +13,7 @@ export function ProgressBar({ value, max, label }) {
       aria-valuenow={value}
       aria-valuemin={0}
       aria-valuemax={max}
-      className="h-2.5 w-full overflow-hidden rounded-full bg-track"
+      className="h-2 w-full overflow-hidden rounded-full bg-track"
     >
       <div
         className="h-full rounded-full bg-success transition-[width]"

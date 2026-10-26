@@ -23,7 +23,7 @@ export default async function NewBannerPage() {
       <div className="px-6 py-6 sm:px-8">
         <Link
           href="/banners"
-          className="font-nunito text-sm text-muted underline-offset-2 hover:underline"
+          className="text-sm text-muted underline-offset-2 hover:underline"
         >
           ← All banners
         </Link>

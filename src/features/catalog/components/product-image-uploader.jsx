@@ -128,7 +128,7 @@ export function ProductImageUploader({
 
   return (
     <div className="flex flex-col gap-2">
-      <p className="font-nunito text-xs font-semibold text-foreground">
+      <p className="text-xs font-semibold text-foreground">
         Photos
         <span className="text-danger" aria-hidden="true">
           {" "}
@@ -145,7 +145,7 @@ export function ProductImageUploader({
         {images.map((image, index) => (
           <figure
             key={image.url}
-            className="group relative h-24 w-24 overflow-hidden rounded-lg border border-border bg-background"
+            className="group relative h-24 w-24 overflow-hidden rounded-lg border border-border bg-surface-muted"
           >
             {/* A plain <img> — the same call as the products table. These are
                 thumbnails on an internal page, and next/image would need every
@@ -159,7 +159,7 @@ export function ProductImageUploader({
             />
 
             {index === 0 ? (
-              <figcaption className="absolute inset-x-0 bottom-0 bg-brand/85 py-0.5 text-center font-nunito text-[0.625rem] font-semibold uppercase tracking-wide text-white">
+              <figcaption className="absolute inset-x-0 bottom-0 bg-brand/85 py-0.5 text-center text-[0.625rem] font-semibold uppercase tracking-wide text-white">
                 Featured
               </figcaption>
             ) : (
@@ -193,14 +193,14 @@ export function ProductImageUploader({
             type="button"
             disabled={disabled || isBusy}
             onClick={() => inputRef.current?.click()}
-            className="flex h-24 w-24 flex-col items-center justify-center gap-1 rounded-lg border border-dashed border-border bg-background text-muted transition hover:border-brand/50 hover:text-brand disabled:cursor-not-allowed disabled:opacity-60"
+            className="flex h-24 w-24 flex-col items-center justify-center gap-1 rounded-lg border border-dashed border-border bg-surface-muted text-muted transition hover:border-brand/50 hover:text-brand disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isBusy ? (
               <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />
             ) : (
               <ImagePlus className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
             )}
-            <span className="font-nunito text-[0.625rem] font-semibold">
+            <span className="text-[0.625rem] font-semibold">
               {isBusy ? "Uploading" : "Add photo"}
             </span>
           </button>
@@ -218,7 +218,7 @@ export function ProductImageUploader({
 
       {/* An upload that just failed outranks "you have no photos" — it is the
           more recent and more specific thing to fix. */}
-      <p aria-live="polite" className="font-nunito text-xs text-muted">
+      <p aria-live="polite" className="text-xs text-muted">
         {uploadError || error ? (
           <span className="text-danger">{uploadError || error}</span>
         ) : (

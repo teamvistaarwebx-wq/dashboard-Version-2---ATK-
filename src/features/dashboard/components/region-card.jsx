@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Card } from "@/components/ui/card";
+import { Segmented } from "@/components/ui/segmented";
 import { Change } from "@/components/ui/change";
 import { formatNumber, percentChange } from "@/lib/format";
 import { regionTable } from "@/mocks/analytics";
@@ -28,32 +29,28 @@ export function RegionCard({ world, from, to, comparison, className = "" }) {
     <Card
       className={className}
       title="Traffic and inquiries by region"
+      subtitle="Indian states, ranked by the selected measure"
       action={
-        <div role="group" aria-label="Rank by" className="flex rounded-lg bg-neutral-bg p-0.5">
-          {["visitors", "inquiries"].map((value) => (
-            <button
-              key={value}
-              type="button"
-              aria-pressed={measure === value}
-              onClick={() => setMeasure(value)}
-              className={`h-7 rounded-md px-2.5 text-13 font-medium capitalize transition-colors ${
-                measure === value ? "bg-surface text-foreground shadow-card" : "text-muted hover:text-foreground"
-              }`}
-            >
-              {value}
-            </button>
-          ))}
-        </div>
+        <Segmented
+          label="Rank by"
+          size="sm"
+          value={measure}
+          onChange={setMeasure}
+          options={[
+            { value: "visitors", label: "Visitors" },
+            { value: "inquiries", label: "Inquiries" },
+          ]}
+        />
       }
     >
       <div className="relative mt-3 overflow-x-auto">
         <table className="w-full min-w-[34rem] text-left text-13">
-          <thead className="border-y border-border bg-surface-muted text-xs text-muted">
+          <thead className="border-y border-border bg-surface-muted/70 text-[11px] uppercase tracking-wider text-muted">
             <tr>
-              <th scope="col" className="px-4 py-2 font-medium">State</th>
-              <th scope="col" className="px-4 py-2 font-medium capitalize">{measure}</th>
-              <th scope="col" className="px-4 py-2 text-right font-medium capitalize">{other}</th>
-              <th scope="col" className="px-4 py-2 text-right font-medium">Change</th>
+              <th scope="col" className="px-4 py-2.5 font-medium">State</th>
+              <th scope="col" className="px-4 py-2.5 font-medium">{measure}</th>
+              <th scope="col" className="px-4 py-2.5 text-right font-medium">{other}</th>
+              <th scope="col" className="px-4 py-2.5 text-right font-medium">Change</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
@@ -65,16 +62,16 @@ export function RegionCard({ world, from, to, comparison, className = "" }) {
                   <th scope="row" className="px-4 py-2.5 font-normal">{row.state}</th>
                   <td className="px-4 py-2.5">
                     <div className="flex items-center gap-3">
-                      <span className="w-12 shrink-0 font-mono tabular-nums">{formatNumber(row[measure])}</span>
-                      <span className="h-1.5 w-full max-w-40 overflow-hidden rounded-full bg-neutral-bg" aria-hidden="true">
+                      <span className="w-12 shrink-0 font-medium tabular-nums">{formatNumber(row[measure])}</span>
+                      <span className="h-1.5 w-full max-w-48 overflow-hidden rounded-full bg-neutral-bg" aria-hidden="true">
                         <span className="block h-full rounded-full bg-chart-line" style={{ width: `${Math.max(2, share * 100)}%` }} />
                       </span>
-                      <span className="w-10 shrink-0 text-right font-mono text-xs text-muted tabular-nums">
+                      <span className="w-10 shrink-0 text-right text-xs text-muted tabular-nums">
                         {(share * 100).toFixed(share < 0.1 ? 1 : 0)}%
                       </span>
                     </div>
                   </td>
-                  <td className="px-4 py-2.5 text-right font-mono tabular-nums text-muted">{formatNumber(row[other])}</td>
+                  <td className="px-4 py-2.5 text-right tabular-nums text-muted">{formatNumber(row[other])}</td>
                   <td className="px-4 py-2.5 text-right">
                     <Change value={previous === null ? null : percentChange(row[measure], previous)} />
                   </td>
@@ -86,7 +83,7 @@ export function RegionCard({ world, from, to, comparison, className = "" }) {
       </div>
 
       {sorted.length > COLLAPSED_ROWS ? (
-        <div className="border-t border-border px-4 py-2.5">
+        <div className="border-t border-border px-4 py-3">
           <button
             type="button"
             onClick={() => setExpanded((value) => !value)}

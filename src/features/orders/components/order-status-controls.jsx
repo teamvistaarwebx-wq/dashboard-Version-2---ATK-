@@ -88,7 +88,7 @@ export function OrderStatusControls({ orderId, allowed }) {
               onClick={() =>
                 action.confirm ? setConfirming(status) : submit(status)
               }
-              className={`inline-flex h-11 items-center justify-center gap-2 rounded-lg px-5 font-nunito text-sm font-semibold transition ${TONES[action.tone]}`}
+              className={`inline-flex h-9 items-center justify-center gap-2 rounded-[10px] px-5 text-13 font-medium transition ${TONES[action.tone]}`}
             >
               {isPending && pendingStatus === status ? (
                 <>
@@ -106,7 +106,7 @@ export function OrderStatusControls({ orderId, allowed }) {
       {state?.error ? (
         <p
           role="alert"
-          className="rounded-lg bg-danger/8 px-3 py-2.5 font-nunito text-sm text-danger"
+          className="rounded-lg bg-danger/8 px-3 py-2.5 text-sm text-danger"
         >
           {state.error}
         </p>

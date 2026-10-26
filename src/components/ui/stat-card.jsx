@@ -5,36 +5,33 @@ const NOTE_TONES = {
 };
 
 /**
- * KPI tile: label and figure on the left, a brand block flush to the right
- * edge carrying the icon.
- *
- * The icon block is `absolute inset-y-0 right-0` rather than a flex sibling so
- * it spans the full card height regardless of whether `note` is present —
- * otherwise cards with and without a sub-line would disagree.
+ * KPI tile: label over the figure, the icon in a small bordered square in the
+ * top-right corner, and the note on a hairline-divided foot.
  */
 export function StatCard({ label, value, note, noteTone = "muted", icon }) {
   return (
-    <div className="relative overflow-hidden rounded-xl border border-border bg-surface">
-      <div className="flex min-h-24 flex-col justify-center gap-1 py-4 pl-5 pr-24">
-        <p className="font-newsreader text-sm font-semibold text-brand">
-          {label}
-        </p>
-        <p className="font-newsreader text-2xl font-semibold leading-tight text-foreground">
-          {value}
-        </p>
-        {note ? (
-          <p className={`text-xs ${NOTE_TONES[noteTone] ?? NOTE_TONES.muted}`}>
-            {note}
+    <div className="flex flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-card">
+      <div className="flex items-start justify-between gap-3 p-4">
+        <div className="min-w-0">
+          <p className="text-13 text-muted">{label}</p>
+          <p className="mt-1.5 text-2xl font-semibold leading-tight tracking-tight tabular-nums text-foreground">
+            {value}
           </p>
-        ) : null}
+        </div>
+
+        <div
+          className="flex size-9 shrink-0 items-center justify-center rounded-[10px] border border-border bg-surface-muted text-brand-text [&_svg]:size-[18px]"
+          aria-hidden="true"
+        >
+          {icon}
+        </div>
       </div>
 
-      <div
-        className="absolute inset-y-0 right-0 flex w-20 items-center justify-center bg-brand text-white"
-        aria-hidden="true"
-      >
-        {icon}
-      </div>
+      {note ? (
+        <p className={`mt-auto border-t border-border px-4 py-2.5 text-xs ${NOTE_TONES[noteTone] ?? NOTE_TONES.muted}`}>
+          {note}
+        </p>
+      ) : null}
     </div>
   );
 }

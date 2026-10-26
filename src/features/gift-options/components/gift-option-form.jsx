@@ -132,7 +132,7 @@ export function GiftOptionForm({ option = EMPTY, type }) {
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="flex w-fit items-center gap-2 font-nunito text-sm text-foreground">
+            <label className="flex w-fit items-center gap-2 text-sm text-foreground">
               <input
                 type="checkbox"
                 name="isActive"
@@ -144,12 +144,12 @@ export function GiftOptionForm({ option = EMPTY, type }) {
               <span className="text-xs text-muted">— shown on the cart</span>
             </label>
             {errors.isActive ? (
-              <p role="alert" className="font-nunito text-xs text-danger">
+              <p role="alert" className="text-xs text-danger">
                 {errors.isActive}
               </p>
             ) : null}
 
-            <label className="flex w-fit items-center gap-2 font-nunito text-sm text-foreground">
+            <label className="flex w-fit items-center gap-2 text-sm text-foreground">
               <input
                 type="checkbox"
                 name="isDefault"
@@ -163,7 +163,7 @@ export function GiftOptionForm({ option = EMPTY, type }) {
               </span>
             </label>
             {errors.isDefault ? (
-              <p role="alert" className="font-nunito text-xs text-danger">
+              <p role="alert" className="text-xs text-danger">
                 {errors.isDefault}
               </p>
             ) : null}
@@ -187,7 +187,7 @@ export function GiftOptionForm({ option = EMPTY, type }) {
 
         <Link
           href="/gift-options"
-          className="font-nunito text-sm text-muted underline-offset-2 hover:underline"
+          className="text-sm text-muted underline-offset-2 hover:underline"
         >
           Cancel
         </Link>

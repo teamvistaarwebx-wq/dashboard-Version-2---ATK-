@@ -89,7 +89,7 @@ export function GiftOptionImageField({ defaultValue = "", error = "", disabled =
 
   return (
     <div className="flex flex-col gap-2">
-      <p className="font-nunito text-xs font-semibold text-foreground">
+      <p className="text-xs font-semibold text-foreground">
         Image
         <span className="text-danger" aria-hidden="true">
           {" "}
@@ -101,7 +101,7 @@ export function GiftOptionImageField({ defaultValue = "", error = "", disabled =
 
       <div className="flex flex-col gap-3 rounded-lg border border-border bg-surface p-3">
         {url ? (
-          <div className="aspect-[4/3] w-full max-w-64 overflow-hidden rounded-md border border-border bg-background">
+          <div className="aspect-[4/3] w-full max-w-64 overflow-hidden rounded-md border border-border bg-surface-muted">
             {/* A plain <img>, like the banner field: next/image would need
                 every storefront image host allow-listed here too. */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -124,7 +124,7 @@ export function GiftOptionImageField({ defaultValue = "", error = "", disabled =
             type="button"
             disabled={disabled || uploading}
             onClick={() => inputRef.current?.click()}
-            className="inline-flex items-center gap-2 rounded-lg border border-dashed border-border bg-background px-3 py-2 font-nunito text-xs font-semibold text-muted transition hover:border-brand/50 hover:text-brand disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex items-center gap-2 rounded-lg border border-dashed border-border bg-surface-muted px-3 py-2 text-xs font-semibold text-muted transition hover:border-brand/50 hover:text-brand disabled:cursor-not-allowed disabled:opacity-60"
           >
             {uploading ? (
               <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
@@ -135,7 +135,7 @@ export function GiftOptionImageField({ defaultValue = "", error = "", disabled =
           </button>
 
           {size ? (
-            <span className="font-nunito text-xs text-muted">
+            <span className="text-xs text-muted">
               {size.width} × {size.height} · {ratio.toFixed(2)}:1
             </span>
           ) : null}
@@ -152,7 +152,7 @@ export function GiftOptionImageField({ defaultValue = "", error = "", disabled =
 
       {/* One line, most urgent first: a failed upload, then a crop, then
           the standing hint. */}
-      <p aria-live="polite" className="font-nunito text-xs text-muted">
+      <p aria-live="polite" className="text-xs text-muted">
         {uploadError || error ? (
           <span className="text-danger">{uploadError || error}</span>
         ) : willCrop ? (

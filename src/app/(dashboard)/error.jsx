@@ -1,5 +1,7 @@
 "use client";
 
+import { CircleAlert } from "lucide-react";
+
 /**
  * Catches anything a dashboard page throws while rendering.
  *
@@ -16,11 +18,17 @@
 export default function DashboardError({ error, reset }) {
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4 px-6 text-center">
-      <h2 className="font-newsreader text-xl font-semibold text-brand">
+      <span
+        aria-hidden="true"
+        className="flex size-12 items-center justify-center rounded-2xl border border-border bg-critical-bg text-critical"
+      >
+        <CircleAlert className="size-6" />
+      </span>
+      <h2 className="text-xl font-semibold tracking-tight text-foreground">
         Something went wrong
       </h2>
 
-      <p className="max-w-md font-nunito text-sm text-muted">
+      <p className="max-w-md text-sm text-muted">
         This screen could not be loaded. It is usually a dropped database
         connection, and trying again is often enough.
       </p>
@@ -30,7 +38,7 @@ export default function DashboardError({ error, reset }) {
           matches this failure to a line in the server logs, so it is worth
           showing to whoever is about to report the problem. */}
       {error?.digest ? (
-        <p className="font-nunito text-xs text-muted">
+        <p className="text-xs text-muted">
           Reference: <code>{error.digest}</code>
         </p>
       ) : null}
@@ -38,7 +46,7 @@ export default function DashboardError({ error, reset }) {
       <button
         type="button"
         onClick={reset}
-        className="mt-2 inline-flex h-11 items-center justify-center rounded-lg bg-brand px-5 text-sm font-semibold text-white transition hover:bg-brand/90"
+        className="mt-2 inline-flex h-9 items-center justify-center rounded-[10px] bg-brand px-5 text-13 font-medium text-white shadow-card transition hover:bg-brand-hover"
       >
         Try again
       </button>

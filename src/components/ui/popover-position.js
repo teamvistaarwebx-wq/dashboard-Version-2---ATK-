@@ -29,4 +29,4 @@ export function popoverPosition(anchor) {
 
 /** The list's own classes — one look for every dropdown in the admin. */
 export const POPOVER_LIST_CLASS =
-  "scrollbar-subtle-dark fixed m-0 overflow-y-auto rounded-xl bg-surface p-1 text-sm text-foreground shadow-popover [inset:auto]";
+  "scrollbar-subtle-dark fixed m-0 overflow-y-auto rounded-xl border border-border bg-surface p-1.5 text-sm text-foreground shadow-popover [inset:auto]";

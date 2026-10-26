@@ -63,11 +63,11 @@ export function CategorySelect({
 export function FieldSkeleton({ label }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <span className="font-nunito text-xs font-semibold text-foreground">
+      <span className="text-xs font-semibold text-foreground">
         {label}
       </span>
       <div
-        className="h-11 animate-pulse rounded-lg bg-border/60"
+        className="h-9 animate-pulse rounded-[10px] bg-border/60"
         aria-hidden="true"
       />
     </div>

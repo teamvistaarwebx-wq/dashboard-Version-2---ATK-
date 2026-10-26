@@ -36,7 +36,7 @@ export default async function BannersPage() {
       >
         <Link
           href="/banners/new"
-          className="inline-flex h-11 items-center justify-center rounded-lg bg-brand px-4 text-sm font-semibold text-white transition hover:bg-brand/90"
+          className="inline-flex h-9 items-center justify-center rounded-[10px] bg-brand px-4 text-13 font-medium text-white shadow-card transition hover:bg-brand-hover"
         >
           New banner
         </Link>
@@ -68,22 +68,22 @@ export default async function BannersPage() {
                     </Link>
 
                     {banner.isActive ? (
-                      <span className="rounded-full bg-emerald-100 px-2.5 py-1 font-nunito text-xs font-medium text-emerald-800">
+                      <span className="rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-medium text-emerald-800">
                         Live
                       </span>
                     ) : (
-                      <span className="rounded-full bg-gray-100 px-2.5 py-1 font-nunito text-xs font-medium text-gray-500">
+                      <span className="rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-500">
                         Draft
                       </span>
                     )}
                   </div>
 
-                  <p className="mt-1 font-nunito text-xs text-muted">
+                  <p className="mt-1 text-xs text-muted">
                     Updated {formatDateTime(banner.updatedAt)}
                   </p>
 
                   {banner.desktop?.width ? (
-                    <p className="mt-0.5 font-nunito text-xs text-muted">
+                    <p className="mt-0.5 text-xs text-muted">
                       Desktop {banner.desktop.width} × {banner.desktop.height}
                       {banner.mobile?.width
                         ? ` · Mobile ${banner.mobile.width} × ${banner.mobile.height}`
@@ -130,7 +130,7 @@ function BannerThumb({ image, label, narrow = false }) {
           />
         ) : null}
       </div>
-      <figcaption className="mt-1 text-center font-nunito text-[0.625rem] uppercase tracking-wide text-muted">
+      <figcaption className="mt-1 text-center text-[0.625rem] uppercase tracking-wide text-muted">
         {label}
       </figcaption>
     </figure>

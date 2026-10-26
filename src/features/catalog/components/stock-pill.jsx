@@ -8,7 +8,7 @@
 export function StockPill({ inStock }) {
   return (
     <span
-      className={`inline-block rounded-full px-2.5 py-1 font-nunito text-xs font-medium ${
+      className={`inline-block rounded-full px-2.5 py-1 text-xs font-medium ${
         inStock ? "bg-emerald-100 text-emerald-800" : "bg-red-100 text-red-700"
       }`}
     >

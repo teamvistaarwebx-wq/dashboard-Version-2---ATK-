@@ -59,7 +59,7 @@ function OptionSection({ title, type, newLabel, options, emptyWarning }) {
   return (
     <section className="flex flex-col gap-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h2 className="font-nunito text-sm font-semibold uppercase tracking-wide text-muted">
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
           {title}
         </h2>
 
@@ -74,7 +74,7 @@ function OptionSection({ title, type, newLabel, options, emptyWarning }) {
       {/* Not a block: an empty section is a valid choice, but nobody should
           make it without knowing what the cart does about it. */}
       {options.length > 0 && !hasActive ? (
-        <p className="rounded-lg border border-danger/30 bg-danger/5 px-4 py-3 font-nunito text-sm text-danger">
+        <p className="rounded-lg border border-danger/30 bg-danger/5 px-4 py-3 text-sm text-danger">
           {emptyWarning}
         </p>
       ) : null}
@@ -132,25 +132,25 @@ function OptionRow({ option }) {
           </Link>
 
           {option.isDefault ? (
-            <span className="rounded-full bg-emerald-100 px-2.5 py-1 font-nunito text-xs font-medium text-emerald-800">
+            <span className="rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-medium text-emerald-800">
               Default
             </span>
           ) : null}
 
           {option.isActive ? null : (
-            <span className="rounded-full bg-gray-100 px-2.5 py-1 font-nunito text-xs font-medium text-gray-500">
+            <span className="rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-500">
               Inactive
             </span>
           )}
 
           {option.image ? null : (
-            <span className="rounded-full bg-danger/10 px-2.5 py-1 font-nunito text-xs font-medium text-danger">
+            <span className="rounded-full bg-danger/10 px-2.5 py-1 text-xs font-medium text-danger">
               No image
             </span>
           )}
         </div>
 
-        <p className="mt-1 font-nunito text-xs text-muted">
+        <p className="mt-1 text-xs text-muted">
           {[
             option.price > 0 ? formatPrice(option.price) : "Free",
             detail,

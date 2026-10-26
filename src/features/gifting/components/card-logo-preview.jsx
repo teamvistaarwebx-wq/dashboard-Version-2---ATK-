@@ -39,7 +39,7 @@ export function CardLogoPreview({ logo }) {
         style={{ backgroundColor: CARD_BACKGROUND }}
       >
         {logo.format === "pdf" ? (
-          <span className="font-nunito text-sm font-semibold text-foreground">
+          <span className="text-sm font-semibold text-foreground">
             PDF logo
           </span>
         ) : (
@@ -52,13 +52,13 @@ export function CardLogoPreview({ logo }) {
         )}
       </div>
 
-      <p className="break-all font-nunito text-xs text-muted">
+      <p className="break-all text-xs text-muted">
         {logo.fileName} — {details}
       </p>
 
       <a
         href={downloadUrl}
-        className="w-fit font-nunito text-sm font-semibold text-brand underline-offset-2 hover:underline"
+        className="w-fit text-sm font-semibold text-brand underline-offset-2 hover:underline"
       >
         Download original
       </a>

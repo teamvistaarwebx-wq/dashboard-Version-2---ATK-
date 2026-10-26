@@ -17,7 +17,7 @@ const STATUS_STYLES = {
 export function InquiryStatusPill({ status }) {
   return (
     <span
-      className={`inline-block rounded-full px-2.5 py-1 font-nunito text-xs font-medium capitalize ${
+      className={`inline-block rounded-full px-2.5 py-1 text-xs font-medium capitalize ${
         STATUS_STYLES[status] ?? "bg-gray-100 text-gray-600"
       }`}
     >

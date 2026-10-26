@@ -83,7 +83,7 @@ export function BannersScreen() {
       }
     >
       <Card>
-        <div className="border-b border-border p-2">
+        <div className="border-b border-border px-4">
           <Tabs label="Banner state" tabs={tabs} value={tab} controls="banners-table" onChange={setTab} />
         </div>
         <div id="banners-table">

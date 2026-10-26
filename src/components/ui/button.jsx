@@ -8,23 +8,22 @@ import Link from "next/link";
  * secondary and tertiary.
  */
 const BASE =
-  "inline-flex shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0";
+  "inline-flex shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-[10px] font-medium transition-[background-color,border-color,color,box-shadow] disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0";
 
 const VARIANTS = {
-  primary:
-    "bg-brand text-white shadow-[inset_0_-1px_0_rgba(0,0,0,0.2)] hover:bg-brand-hover",
+  primary: "bg-brand text-white shadow-card hover:bg-brand-hover",
   secondary:
-    "border border-border bg-surface text-foreground shadow-card hover:bg-surface-muted",
-  tertiary: "text-foreground hover:bg-neutral-bg",
-  critical: "bg-critical text-white hover:opacity-90",
+    "border border-border bg-surface text-foreground shadow-card hover:border-border-strong hover:bg-surface-muted",
+  tertiary: "text-muted hover:bg-neutral-bg hover:text-foreground",
+  critical: "bg-critical text-white shadow-card hover:opacity-90",
   plain: "text-brand-text hover:underline underline-offset-2 px-0!",
 };
 VARIANTS.outline = VARIANTS.secondary;
 VARIANTS.ghost = VARIANTS.tertiary;
 
 const SIZES = {
-  sm: "h-8 px-2.5 text-13",
-  md: "h-9 px-3 text-sm",
+  sm: "h-8 px-3 text-13",
+  md: "h-9 px-3.5 text-13",
   icon: "size-8 text-sm",
 };
 

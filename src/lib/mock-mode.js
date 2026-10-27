@@ -27,6 +27,27 @@ const HOSTED_DEMO =
 export const MOCK_AUTH_BYPASS =
   MOCK_MODE && (process.env.NODE_ENV !== "production" || HOSTED_DEMO);
 
+/**
+ * Why a hosted demo someone asked for is not running, for the sign-in page —
+ * the Vercel settings are out of reach from the app, so the deployment says
+ * which condition failed. Null when no demo was asked for, so an ordinary
+ * production admin shows nothing. Names settings, never their values.
+ */
+export function hostedDemoBlocker() {
+  if (process.env.NODE_ENV !== "production" || MOCK_AUTH_BYPASS) return null;
+
+  const demoAsked = process.env.ADMIN_PUBLIC_DEMO === "1";
+  if (!MOCK_MODE && !demoAsked) return null;
+
+  if (process.env.MONGODB_URI) {
+    return "MONGODB_URI is set on this deployment. Remove it from the Vercel project, then redeploy.";
+  }
+  if (!MOCK_MODE) {
+    return "NEXT_PUBLIC_ADMIN_MOCK=1 was not set when this deployment was built. Add it for Production, then redeploy without the build cache.";
+  }
+  return "ADMIN_PUBLIC_DEMO=1 is not set for this deployment. Add it for Production, then redeploy.";
+}
+
 /** Who the prototype is signed in as. Same shape as `getSession()`. */
 export const MOCK_SESSION = {
   adminId: "mock-admin",
